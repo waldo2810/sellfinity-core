@@ -33,20 +33,20 @@ public class CategoryController {
   @GetMapping
   public ResponseEntity<List<CategoryResponse>> findAllCategories() {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(getCategoryApplication.findAllCategories()));
+        categoryResponseMapper.toDto(getCategoryApplication.findAllCategories()));
   }
 
   @GetMapping("/search/{id}")
   public ResponseEntity<CategoryResponse> findCategoryById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(getCategoryApplication.findCategoryById(id)));
+        categoryResponseMapper.toDto(getCategoryApplication.findCategoryById(id)));
   }
 
   @PostMapping
   public ResponseEntity<CategoryResponse> saveCategory(
       @Valid @RequestBody CategoryRequest category) {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(
+        categoryResponseMapper.toDto(
             saveCategoryApplication.saveCategory(categoryRequestMapper.toEntity(category))));
   }
 
