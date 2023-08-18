@@ -7,6 +7,6 @@ import lombok.Data;
 public class CategoryResponse {
 
   private Long id;
-  private Long name;
+  private String name;
   private LocalDateTime createdAt;
 }
