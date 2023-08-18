@@ -1,4 +1,4 @@
-package com.sellfinity.core.shared.exception.mapper;
+package com.sellfinity.core.shared.mapper;
 
 import java.util.List;
 

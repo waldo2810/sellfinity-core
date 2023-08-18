@@ -1,7 +1,7 @@
 package com.sellfinity.core.infrastructure.repository.category;
 
 import com.sellfinity.core.domain.entity.Category;
-import com.sellfinity.core.shared.exception.mapper.EntityToDto;
+import com.sellfinity.core.shared.mapper.EntityToDto;
 import org.mapstruct.Mapper;
 
 @Mapper
