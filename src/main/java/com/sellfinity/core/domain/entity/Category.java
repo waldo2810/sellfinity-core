@@ -9,7 +9,6 @@ public class Category {
   private Long id;
   private Long billboardId;
   private String name;
-  /*private CategoryProduct products;*/
   private String products;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
