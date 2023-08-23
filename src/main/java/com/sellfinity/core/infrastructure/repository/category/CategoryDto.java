@@ -1,10 +1,7 @@
 package com.sellfinity.core.infrastructure.repository.category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.sellfinity.core.infrastructure.repository.store.StoreDto;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import lombok.Data;
@@ -20,7 +17,9 @@ public class CategoryDto {
   private Long billboardId;
   @NotNull
   private String name;
-  /*private CategoryProduct products;*/
+  @ManyToOne
+  @JoinColumn(name = "store_id")
+  private StoreDto store;
   private String products;
   @NotNull
   private LocalDateTime createdAt;
