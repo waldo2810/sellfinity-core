@@ -23,8 +23,9 @@ public class CategoryDto {
   private Long billboardId;
   @NotNull
   private String name;
+  @NotNull
   @ManyToOne
-  @JoinColumn(name = "store_id")
+  @JoinColumn(name = "store_id", referencedColumnName = "id")
   private StoreDto store;
   private String products;
   @NotNull

@@ -11,5 +11,4 @@ public interface EntityToDto<E, O> {
   List<O> toDto(List<E> entity);
 
   List<E> toEntity(List<O> dto);
-
 }

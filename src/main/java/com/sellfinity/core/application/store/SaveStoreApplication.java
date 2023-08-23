@@ -10,8 +10,8 @@ public class SaveStoreApplication {
 
   private final SaveStoreService saveStoreService;
 
-  public void save(Store store) {
+  public Store save(Store store) {
     store.setCreatedAt(LocalDateTime.now());
-    saveStoreService.save(store);
+    return saveStoreService.save(store);
   }
 }
