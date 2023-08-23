@@ -4,14 +4,18 @@ import com.sellfinity.core.application.store.DeleteStoreApplication;
 import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.application.store.SaveStoreApplication;
 import com.sellfinity.core.application.store.UpdateStoreApplication;
-import com.sellfinity.core.domain.entity.Category;
-import com.sellfinity.core.infrastructure.api.category.CategoryRequest;
-import com.sellfinity.core.infrastructure.api.category.CategoryResponse;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/store")
@@ -30,24 +34,28 @@ public class StoreController {
     return ResponseEntity.ok(storeResponseMapper.toDto(
         saveStoreApplication.saveStore(storeRequestMapper.toEntity(storeRequest))));
   }
+
   @GetMapping("/search/{id}")
   public ResponseEntity<StoreResponse> findStoreById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-            storeResponseMapper.toDto(getStoreApplication.findStoreById(id)));
+        storeResponseMapper.toDto(getStoreApplication.findStoreById(id)));
   }
+
   @GetMapping
   public ResponseEntity<List<StoreResponse>> findAllStores() {
     return ResponseEntity.ok(
-            storeResponseMapper.toDto(getStoreApplication.findAllStores()));
+        storeResponseMapper.toDto(getStoreApplication.findAllStores()));
   }
+
   @DeleteMapping("/delete/{id}")
   public void deleteStore(@PathVariable("id") Long id) {
     deleteStoreApplication.deleteStore(id);
 
   }
+
   @PutMapping("/update/{id}")
   public void updateCategory(@PathVariable("id") Long id,
-                             @RequestParam("name") String name) {
+      @RequestParam("name") String name) {
     updateStoreApplication.updateStore(id, name);
   }
 }

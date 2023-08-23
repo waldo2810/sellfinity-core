@@ -15,19 +15,22 @@ public class StoreApplicationBeans {
       SaveStoreService saveStoreService) {
     return new SaveStoreApplication(saveStoreService);
   }
+
   @Bean
   public GetStoreApplication getStoreApplication(
       GetStoreService getStoreService) {
     return new GetStoreApplication(getStoreService);
   }
+
   @Bean
   public DeleteStoreApplication deleteStoreApplication(
       DeleteStoreService deleteStoreService) {
     return new DeleteStoreApplication(deleteStoreService);
   }
+
   @Bean
   public UpdateStoreApplication updateStoreApplication(
-          UpdateStoreService updateStoreService) {
+      UpdateStoreService updateStoreService) {
     return new UpdateStoreApplication(updateStoreService);
   }
 }
