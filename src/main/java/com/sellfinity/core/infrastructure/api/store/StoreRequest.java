@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class StoreRequest {
-    private String name;
-    private String userId;
+
+  private String name;
+  private String userId;
 }
