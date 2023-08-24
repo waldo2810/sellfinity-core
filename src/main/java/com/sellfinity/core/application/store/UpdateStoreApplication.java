@@ -10,8 +10,6 @@ public class UpdateStoreApplication {
   private final UpdateStoreService updateStoreService;
 
   @Transactional
-  public void updateStore(Long id, String name) {
-    updateStoreService.updateStore(id, name);
-  }
+  public void updateStore(Long id, String name) {updateStoreService.updateStore(id, name);}
 
 }

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DeleteStoreAdapter implements DeleteStoreService {
 
-    private final StoreRepository storeRepository;
+  private final StoreRepository storeRepository;
 
-    @Override
-    public void deleteStore(Long id) {
-        storeRepository.deleteById(id);
-    }
+  @Override
+  public void deleteStore(Long id) {
+    storeRepository.deleteById(id);
+  }
 }

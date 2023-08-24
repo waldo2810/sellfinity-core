@@ -8,10 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StoreRepository extends JpaRepository<StoreDto, Long> {
-
   @Modifying
-  @Query("Update StoreDto s SET s.name=:name WHERE s.id=:id")
+  @Query("UPDATE StoreDto s SET s.name = :name, s.updatedAt = CURRENT_TIMESTAMP WHERE s.id = :id")
   void updateStore(@Param("id") Long id, @Param("name") String name);
-
 
 }
