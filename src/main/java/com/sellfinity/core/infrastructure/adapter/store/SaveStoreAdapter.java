@@ -15,7 +15,7 @@ public class SaveStoreAdapter implements SaveStoreService {
   private final StoreRepositoryMapper storeRepositoryMapper;
 
   @Override
-  public Store save(Store store) {
+  public Store saveStore(Store store) {
     return storeRepositoryMapper.toEntity(storeRepository.save(storeRepositoryMapper.toDto(store)));
   }
 }
