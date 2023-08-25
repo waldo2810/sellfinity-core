@@ -5,6 +5,6 @@ import com.sellfinity.core.shared.mapper.EntityToDto;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface StoreRequestMapper extends EntityToDto<Store,StoreRequest> {
+public interface StoreRequestMapper extends EntityToDto<Store, StoreRequest> {
 
 }
