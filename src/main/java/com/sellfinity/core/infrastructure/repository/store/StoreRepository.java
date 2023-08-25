@@ -11,5 +11,4 @@ public interface StoreRepository extends JpaRepository<StoreDto, Long> {
   @Modifying
   @Query("UPDATE StoreDto s SET s.name = :name, s.updatedAt = CURRENT_TIMESTAMP WHERE s.id = :id")
   void updateStore(@Param("id") Long id, @Param("name") String name);
-
 }

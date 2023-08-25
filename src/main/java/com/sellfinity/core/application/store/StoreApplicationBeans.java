@@ -30,7 +30,7 @@ public class StoreApplicationBeans {
 
   @Bean
   public UpdateStoreApplication updateStoreApplication(
-      UpdateStoreService updateStoreService) {
-    return new UpdateStoreApplication(updateStoreService);
+      UpdateStoreService updateStoreService, GetStoreApplication getStoreApplication) {
+    return new UpdateStoreApplication(updateStoreService, getStoreApplication);
   }
 }
