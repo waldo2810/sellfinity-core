@@ -8,4 +8,6 @@ public interface GetStoreService {
   Store findStoreById(Long idStore);
 
   List<Store> findAllStores();
+
+  List<Store> findStoresByUserId(Long userId);
 }

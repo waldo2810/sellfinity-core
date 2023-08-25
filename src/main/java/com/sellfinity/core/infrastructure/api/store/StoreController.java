@@ -4,8 +4,10 @@ import com.sellfinity.core.application.store.DeleteStoreApplication;
 import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.application.store.SaveStoreApplication;
 import com.sellfinity.core.application.store.UpdateStoreApplication;
+import jakarta.annotation.Nullable;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,9 +44,9 @@ public class StoreController {
   }
 
   @GetMapping
-  public ResponseEntity<List<StoreResponse>> findAllStores() {
+  public ResponseEntity<List<StoreResponse>> findAllStores(@Nullable @Param("userId") Long userId) {
     return ResponseEntity.ok(
-        storeResponseMapper.toDto(getStoreApplication.findAllStores()));
+        storeResponseMapper.toDto(getStoreApplication.findAllStores(userId)));
   }
 
   @DeleteMapping("/delete/{id}")

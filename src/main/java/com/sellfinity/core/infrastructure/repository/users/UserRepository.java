@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserDto, Long> {
 
   @Modifying
-  @Query("UPDATE UserDto user SET user.name = ?1, user.updatedAt = CURRENT_TIMESTAMP WHERE user.id = ?2")
+  @Query("UPDATE UserDto user SET user.name = ?2, user.updatedAt = CURRENT_TIMESTAMP WHERE user.id = ?1")
   void updateUser(Long id, String name);
 }

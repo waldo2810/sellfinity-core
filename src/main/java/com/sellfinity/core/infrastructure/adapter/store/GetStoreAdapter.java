@@ -27,4 +27,9 @@ public class GetStoreAdapter implements GetStoreService {
   public List<Store> findAllStores() {
     return storeRepositoryMapper.toEntity(storeRepository.findAll());
   }
+
+  @Override
+  public List<Store> findStoresByUserId(Long userId) {
+    return storeRepositoryMapper.toEntity(storeRepository.findByUserId(userId));
+  }
 }

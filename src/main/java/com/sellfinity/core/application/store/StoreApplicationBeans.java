@@ -1,5 +1,6 @@
 package com.sellfinity.core.application.store;
 
+import com.sellfinity.core.application.users.GetUserApplication;
 import com.sellfinity.core.domain.service.store.DeleteStoreService;
 import com.sellfinity.core.domain.service.store.GetStoreService;
 import com.sellfinity.core.domain.service.store.SaveStoreService;
@@ -12,14 +13,14 @@ public class StoreApplicationBeans {
 
   @Bean
   public SaveStoreApplication saveStoreApplication(
-      SaveStoreService saveStoreService) {
-    return new SaveStoreApplication(saveStoreService);
+      SaveStoreService saveStoreService, GetUserApplication getUserApplication) {
+    return new SaveStoreApplication(saveStoreService, getUserApplication);
   }
 
   @Bean
   public GetStoreApplication getStoreApplication(
-      GetStoreService getStoreService) {
-    return new GetStoreApplication(getStoreService);
+      GetStoreService getStoreService, GetUserApplication getUserApplication) {
+    return new GetStoreApplication(getStoreService, getUserApplication);
   }
 
   @Bean
