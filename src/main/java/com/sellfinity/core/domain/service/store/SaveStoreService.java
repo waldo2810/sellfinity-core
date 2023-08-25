@@ -4,5 +4,5 @@ import com.sellfinity.core.domain.entity.Store;
 
 public interface SaveStoreService {
 
-  Store save(Store store);
+  Store saveStore(Store store);
 }
