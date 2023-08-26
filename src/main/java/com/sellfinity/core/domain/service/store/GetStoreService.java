@@ -9,5 +9,5 @@ public interface GetStoreService {
 
   List<Store> findAllStores();
 
-  List<Store> findStoresByUserId(Long userId);
+  List<Store> findStoresByUserEmail(String userEmail);
 }

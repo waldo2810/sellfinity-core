@@ -29,7 +29,7 @@ public class GetStoreAdapter implements GetStoreService {
   }
 
   @Override
-  public List<Store> findStoresByUserId(Long userId) {
-    return storeRepositoryMapper.toEntity(storeRepository.findByUserId(userId));
+  public List<Store> findStoresByUserEmail(String userEmail) {
+    return storeRepositoryMapper.toEntity(storeRepository.findByUserEmail(userEmail));
   }
 }

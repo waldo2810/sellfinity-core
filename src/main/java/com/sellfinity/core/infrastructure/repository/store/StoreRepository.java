@@ -14,5 +14,5 @@ public interface StoreRepository extends JpaRepository<StoreDto, Long> {
   @Query("UPDATE StoreDto s SET s.name = :name, s.updatedAt = CURRENT_TIMESTAMP WHERE s.id = :id")
   void updateStore(@Param("id") Long id, @Param("name") String name);
 
-  List<StoreDto> findByUserId(Long userId);
+  List<StoreDto> findByUserEmail(String user);
 }
