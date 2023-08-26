@@ -8,6 +8,4 @@ public class StoreRequest {
 
   @NotNull
   private String name;
-  @NotNull
-  private Long userId;
 }
