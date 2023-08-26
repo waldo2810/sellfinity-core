@@ -7,9 +7,8 @@ import com.sellfinity.core.shared.mapper.EntityToDto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants.ComponentModel;
 
-@Mapper(componentModel = ComponentModel.SPRING, uses = {
+@Mapper(uses = {
     CategoryRequestMapper.class,
     StoreRequestMapper.class
 }, injectionStrategy = InjectionStrategy.CONSTRUCTOR)

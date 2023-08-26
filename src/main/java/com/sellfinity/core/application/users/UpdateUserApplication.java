@@ -14,6 +14,6 @@ public class UpdateUserApplication {
   @Transactional
   public void updateUser(Long id, Users user) {
     getUserApplication.findUserById(id);
-    updateUserService.updateUser(id,user);
+    updateUserService.updateUser(id, user);
   }
 }
