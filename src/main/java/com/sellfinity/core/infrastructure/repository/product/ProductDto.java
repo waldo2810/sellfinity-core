@@ -1,6 +1,6 @@
-package com.sellfinity.core.infrastructure.repository.category;
+package com.sellfinity.core.infrastructure.repository.product;
 
-import com.sellfinity.core.infrastructure.repository.product.ProductDto;
+import com.sellfinity.core.infrastructure.repository.category.CategoryDto;
 import com.sellfinity.core.infrastructure.repository.store.StoreDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,22 +17,24 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "categories")
-public class CategoryDto {
-
+@Table(name = "products")
+public class ProductDto {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long billboardId;
-  @NotNull
-  private String name;
   @NotNull
   @ManyToOne
   @JoinColumn(name = "store_id", referencedColumnName = "id")
   private StoreDto store;
   @ManyToMany
-  List<ProductDto> product;
+  List<CategoryDto> category;
+  private String name;
+  private Double price;
+  private Boolean isFeatured;
+  private Boolean isArchived;
   @NotNull
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
+
+
 }
