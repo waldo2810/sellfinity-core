@@ -20,6 +20,7 @@ public interface ProductRequestMapper {
       categories.add(category);
     }
     return categories;
+
   }
 
 }
