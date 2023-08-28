@@ -1,6 +1,5 @@
 package com.sellfinity.core.domain.entity;
 
-import com.sellfinity.core.infrastructure.repository.category.CategoryDto;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
@@ -12,7 +11,7 @@ public class Product {
   private Store store;
   List<Category> category;
   private String name;
-  private  Double price;
+  private Double price;
   private Boolean isFeatured;
   private Boolean isArchived;
   private LocalDateTime createdAt;

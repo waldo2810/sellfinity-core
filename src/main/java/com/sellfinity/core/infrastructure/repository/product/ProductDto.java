@@ -19,6 +19,7 @@ import lombok.Data;
 @Entity
 @Table(name = "products")
 public class ProductDto {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
