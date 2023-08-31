@@ -33,9 +33,10 @@ public class ProductController {
   @PostMapping
   public ResponseEntity<ProductResponse> saveProduct(
       @Valid @RequestBody ProductRequest productRequest) {
-    return ResponseEntity.ok(
-        productResponseMapper.toDto(
-            saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest))));
+    List<Long> categoryIds = productRequest.getCategoryIds();
+    return ResponseEntity.ok(productResponseMapper.toDto(
+        saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest),
+            categoryIds)));
   }
 
   @GetMapping
@@ -51,7 +52,9 @@ public class ProductController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public void deleteProduct(@PathVariable("id") Long idProduct) {deleteProductApplication.deleteProduct(idProduct);}
+  public void deleteProduct(@PathVariable("id") Long idProduct) {
+    deleteProductApplication.deleteProduct(idProduct);
+  }
 
   @PutMapping("/update")
   public void updateProduct(@RequestParam("idProduct") Long idProduct,

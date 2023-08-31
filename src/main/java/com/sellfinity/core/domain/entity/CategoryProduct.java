@@ -15,4 +15,5 @@ public class CategoryProduct {
   private Long id;
   private Long productId;
   private Long categoryId;
+  private Long storeId;
 }

@@ -9,13 +9,11 @@ public class Product {
 
   private Long id;
   private Store store;
-  List<Category> category;
   private String name;
   private Double price;
+  private List<Long> categoryIds;
   private Boolean isFeatured;
   private Boolean isArchived;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
-
-
 }
