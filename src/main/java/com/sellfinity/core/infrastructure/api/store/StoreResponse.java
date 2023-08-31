@@ -8,7 +8,7 @@ public class StoreResponse {
 
   private Long id;
   private String name;
-  private String user;
+  private String userEmail;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 }
