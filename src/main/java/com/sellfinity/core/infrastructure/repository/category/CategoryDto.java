@@ -20,14 +20,12 @@ public class CategoryDto {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long billboardId;
   @NotNull
   private String name;
   @NotNull
   @ManyToOne
   @JoinColumn(name = "store_id", referencedColumnName = "id")
   private StoreDto store;
-  private String products;
   @NotNull
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;

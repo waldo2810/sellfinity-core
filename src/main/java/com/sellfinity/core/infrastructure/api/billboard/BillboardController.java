@@ -5,6 +5,7 @@ import com.sellfinity.core.application.billboard.GetBillboardApplication;
 import com.sellfinity.core.application.billboard.SaveBillboardApplication;
 import com.sellfinity.core.application.billboard.UpdateBillboardApplication;
 import com.sellfinity.core.domain.entity.Billboard;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -38,9 +40,10 @@ public class BillboardController {
   }
 
   @GetMapping
-  public ResponseEntity<List<BillBoardResponse>> findAllBillboards() {
+  public ResponseEntity<List<BillBoardResponse>> findAllBillboards(
+      @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        billBoardResponseMapper.toDto(getBillboardApplication.findAllBillboards()));
+        billBoardResponseMapper.toDto(getBillboardApplication.findAllBillboards(storeId)));
   }
 
   @GetMapping("/{id}")
