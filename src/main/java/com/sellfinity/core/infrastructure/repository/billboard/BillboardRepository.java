@@ -1,6 +1,7 @@
 package com.sellfinity.core.infrastructure.repository.billboard;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface BillboardRepository extends JpaRepository<BillboardDto, Long> {
       + "b.imageUrl = ?5,b.updateAt = ?6 WHERE b.id = ?1 ")
   void updateBillboard(Long id, Long storeId, Long categoryId, String label, String imageUrl,
       LocalDateTime updateAt);
+
+  List<BillboardDto> findByStore_Id(Long storeId);
 }

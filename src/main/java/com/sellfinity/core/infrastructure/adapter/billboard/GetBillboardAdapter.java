@@ -26,4 +26,9 @@ public class GetBillboardAdapter implements GetBillBoardService {
     return billboardRepository.findById(id).map(billboardRepositoryMapper::toEntity)
         .orElseThrow(() -> new BillboardNotFoundException(id.toString()));
   }
+
+  @Override
+  public List<Billboard> findAllBillboardsByStoreId(Long storeId) {
+    return billboardRepositoryMapper.toEntity(billboardRepository.findByStore_Id(storeId));
+  }
 }

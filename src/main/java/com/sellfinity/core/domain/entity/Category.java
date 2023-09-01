@@ -8,7 +8,6 @@ import lombok.Data;
 public class Category {
 
   private Long id;
-  private Long billboardId;
   private String name;
   private List<Product> product;
   private Store store;

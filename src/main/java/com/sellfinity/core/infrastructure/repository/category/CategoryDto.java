@@ -20,7 +20,6 @@ public class CategoryDto {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long billboardId;
   @NotNull
   private String name;
   @NotNull
