@@ -51,9 +51,9 @@ public class ProductController {
         productResponseMapper.toDto(getProductApplication.findProductById(id)));
   }
 
-  @DeleteMapping("/delete/{id}")
-  public void deleteProduct(@PathVariable("id") Long idProduct) {
-    deleteProductApplication.deleteProduct(idProduct);
+  @DeleteMapping("/delete")
+  public void deleteProduct(@RequestParam("idProduct") Long idProduct,@RequestParam("idStore") Long idStore) {
+    deleteProductApplication.deleteProduct(idProduct,idStore);
   }
 
   @PutMapping("/update")
@@ -61,6 +61,6 @@ public class ProductController {
       @RequestParam("idStore") Long idStore,
       @Valid @RequestBody ProductRequest productRequest) {
     updateProductApplication.updateProduct(idProduct, idStore,
-        productRequestMapper.toEntity(productRequest));
+        productRequestMapper.toEntity(productRequest),productRequest.getCategoryIds());
   }
 }

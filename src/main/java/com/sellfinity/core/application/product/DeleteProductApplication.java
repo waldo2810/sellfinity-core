@@ -8,7 +8,7 @@ public class DeleteProductApplication {
 
   private final DeleteProductService deleteProductService;
 
-  public void deleteProduct(Long idProduct) {
-    deleteProductService.deleteProduct(idProduct);
+  public void deleteProduct(Long idProduct,Long idStore) {
+    deleteProductService.deleteProduct(idProduct,idStore);
   }
 }

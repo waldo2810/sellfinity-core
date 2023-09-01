@@ -2,5 +2,5 @@ package com.sellfinity.core.domain.service.product;
 
 public interface DeleteProductService {
 
-  void deleteProduct(Long idProduct);
+  void deleteProduct(Long idProduct,Long idStore);
 }

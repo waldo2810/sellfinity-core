@@ -13,7 +13,6 @@ public class SaveProductApplication {
 
   public Product saveProduct(Product product, List<Long> categoryIds) {
     product.setCreatedAt(LocalDateTime.now());
-    System.out.println(product.getId());
     return saveProductService.saveProduct(product, categoryIds);
   }
 }

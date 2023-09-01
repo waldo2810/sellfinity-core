@@ -1,5 +1,6 @@
 package com.sellfinity.core.infrastructure.repository.product;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,7 @@ public interface ProductRepository extends JpaRepository<ProductDto, Long> {
   void updateProduct(@Param("id") Long id, @Param("idStore") Long idStore,
       @Param("name") String name, @Param("price") Double price,
       @Param("isFeatured") Boolean isFeatured, @Param("isArchived") Boolean isArchived);
-
+  @Transactional
+  void deleteByIdAndStoreId(Long id, Long storeId);
 
 }
