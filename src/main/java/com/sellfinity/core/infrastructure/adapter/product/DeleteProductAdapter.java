@@ -1,7 +1,6 @@
 package com.sellfinity.core.infrastructure.adapter.product;
 
 import com.sellfinity.core.domain.service.product.DeleteProductService;
-import com.sellfinity.core.infrastructure.repository.product.ProductDto;
 import com.sellfinity.core.infrastructure.repository.product.ProductRepository;
 import com.sellfinity.core.infrastructure.repository.product_category.ProductCategoryRepository;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ public class DeleteProductAdapter implements DeleteProductService {
 
   @Override
   public void deleteProduct(Long id, Long idStore) {
-    productRepository.deleteByIdAndStoreId(id,idStore);
-    productCategoryRepository.deleteByProductIdAndStoreId(id,idStore);
+    productRepository.deleteByIdAndStoreId(id, idStore);
+    productCategoryRepository.deleteByProductIdAndStoreId(id, idStore);
   }
 }

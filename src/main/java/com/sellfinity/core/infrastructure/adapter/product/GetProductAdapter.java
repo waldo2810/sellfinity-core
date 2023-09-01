@@ -27,5 +27,4 @@ public class GetProductAdapter implements GetProductService {
     return productRepositoryMapper.toEntity(productRepository.findAll());
   }
 
-
 }

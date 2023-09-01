@@ -3,7 +3,6 @@ package com.sellfinity.core.infrastructure.adapter.product;
 import com.sellfinity.core.domain.entity.Product;
 import com.sellfinity.core.domain.service.product.UpdateProductService;
 import com.sellfinity.core.infrastructure.repository.category.CategoryRepository;
-import com.sellfinity.core.infrastructure.repository.product.ProductDto;
 import com.sellfinity.core.infrastructure.repository.product.ProductRepository;
 import com.sellfinity.core.infrastructure.repository.product.ProductRepositoryMapper;
 import com.sellfinity.core.infrastructure.repository.product_category.ProductCategoryDto;
@@ -24,11 +23,12 @@ public class UpdateProductAdapter implements UpdateProductService {
   private final ProductRepositoryMapper productRepositoryMapper;
 
   @Override
-  public void updateProduct(Long id, Long idStore, Product product, List<Long>categoryIds) {
+  public void updateProduct(Long id, Long idStore, Product product, List<Long> categoryIds) {
     updateProductAndCategories(id, idStore, product, categoryIds);
   }
 
-  private void updateProductAndCategories(Long id, Long idStore, Product product, List<Long> categoryIds) {
+  private void updateProductAndCategories(Long id, Long idStore, Product product,
+      List<Long> categoryIds) {
     productRepository.updateProduct(id, idStore, product.getName(), product.getPrice(),
         product.getIsFeatured(), product.getIsArchived());
     productCategoryRepository.deleteByProductIdAndStoreId(id, idStore);
@@ -51,5 +51,4 @@ public class UpdateProductAdapter implements UpdateProductService {
     }
     return productCategoryList;
   }
-
 }

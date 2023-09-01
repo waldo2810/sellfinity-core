@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface UpdateProductService {
 
-  void updateProduct(Long idProduct, Long idStore, Product product, List<Long>categoryIds);
+  void updateProduct(Long idProduct, Long idStore, Product product, List<Long> categoryIds);
 }

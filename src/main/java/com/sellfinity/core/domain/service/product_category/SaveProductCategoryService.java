@@ -1,6 +1,5 @@
 package com.sellfinity.core.domain.service.product_category;
 
-import com.sellfinity.core.domain.entity.Category;
 import com.sellfinity.core.domain.entity.Product;
 import java.util.List;
 

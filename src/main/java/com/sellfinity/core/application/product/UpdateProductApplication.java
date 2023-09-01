@@ -15,6 +15,6 @@ public class UpdateProductApplication {
   @Transactional
   public void updateProduct(Long idProduct, Long idStore, Product product, List<Long> categoryIds) {
     getProductApplication.findProductById(idProduct);
-    updateProductService.updateProduct(idProduct, idStore, product,categoryIds);
+    updateProductService.updateProduct(idProduct, idStore, product, categoryIds);
   }
 }
