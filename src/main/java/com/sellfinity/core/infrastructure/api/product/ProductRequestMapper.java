@@ -9,5 +9,4 @@ public interface ProductRequestMapper {
 
   @Mapping(target = "store.id", source = "storeId")
   Product toEntity(ProductRequest productRequest);
-
 }

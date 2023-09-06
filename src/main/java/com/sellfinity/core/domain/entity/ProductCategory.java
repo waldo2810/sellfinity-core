@@ -6,7 +6,7 @@ import lombok.Data;
 public class ProductCategory {
 
   private Long id;
-  private Long productId;
-  private Long categoryId;
-  private Long storeId;
+  private Product product;
+  private Category category;
+  private Store store;
 }

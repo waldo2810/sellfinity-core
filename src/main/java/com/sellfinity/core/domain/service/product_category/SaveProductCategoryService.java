@@ -1,9 +1,8 @@
 package com.sellfinity.core.domain.service.product_category;
 
-import com.sellfinity.core.domain.entity.Product;
-import java.util.List;
+import com.sellfinity.core.domain.entity.ProductCategory;
 
 public interface SaveProductCategoryService {
 
-  void saveProductCategory(Product product, List<Long> categoryIds);
+  ProductCategory saveProductCategory(ProductCategory productCategory);
 }

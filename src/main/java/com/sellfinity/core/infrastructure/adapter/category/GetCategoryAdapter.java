@@ -26,4 +26,9 @@ public class GetCategoryAdapter implements GetCategoryService {
     return categoryRepositoryMapper.toEntity(categoryRepository.findById(id)
         .orElseThrow(() -> new CategoryNotFoundException(String.valueOf(id))));
   }
+
+  @Override
+  public List<Category> findAllCategoriesByStoreId(Long storeId) {
+    return categoryRepositoryMapper.toEntity(categoryRepository.findByStore_Id(storeId));
+  }
 }

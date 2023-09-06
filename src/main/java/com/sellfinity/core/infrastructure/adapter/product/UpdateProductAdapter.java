@@ -44,9 +44,9 @@ public class UpdateProductAdapter implements UpdateProductService {
       categoryRepository.findById(categoryId)
           .orElseThrow(() -> new CategoryNotFoundException(String.valueOf(categoryId)));
       ProductCategoryDto productCategory = new ProductCategoryDto();
-      productCategory.setProductId(id);
-      productCategory.setCategoryId(categoryId);
-      productCategory.setStoreId(idStore);
+      productCategory.setProduct(id);
+      productCategory.setCategory(categoryId);
+      productCategory.setStore(idStore);
       productCategoryList.add(productCategory);
     }
     return productCategoryList;

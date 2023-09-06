@@ -1,5 +1,7 @@
 package com.sellfinity.core.application.product;
 
+import com.sellfinity.core.application.category.GetCategoryApplication;
+import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
 import com.sellfinity.core.domain.service.product.DeleteProductService;
 import com.sellfinity.core.domain.service.product.GetProductService;
 import com.sellfinity.core.domain.service.product.SaveProductService;
@@ -10,11 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProductApplicationBeans {
 
-
   @Bean
-  public SaveProductApplication saveProductProductApplication(
-      SaveProductService saveProductService) {
-    return new SaveProductApplication(saveProductService);
+  public SaveProductApplication saveProductProductApplication(SaveProductService saveProductService,
+      GetCategoryApplication getCategoryApplication,
+      SaveProductCategoryApplication saveProductCategoryApplication) {
+    return new SaveProductApplication(saveProductService, getCategoryApplication,
+        saveProductCategoryApplication);
   }
 
   @Bean
@@ -34,6 +37,4 @@ public class ProductApplicationBeans {
       UpdateProductService updateProductService, GetProductApplication getProductApplication) {
     return new UpdateProductApplication(updateProductService, getProductApplication);
   }
-
-
 }
