@@ -10,9 +10,7 @@ public class GetProductApplication {
 
   private final GetProductService getProductService;
 
-  public Product findProductById(Long idProduct) {
-    return getProductService.findProductById(idProduct);
-  }
+  public Product findProductById(Long idProduct) {return getProductService.findProductById(idProduct);}
 
   public List<Product> findAllStores() {
     return getProductService.findAllProducts();

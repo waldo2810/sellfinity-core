@@ -1,6 +1,7 @@
 package com.sellfinity.core.application.product;
 
 import com.sellfinity.core.application.category.GetCategoryApplication;
+import com.sellfinity.core.application.product_category.DeleteProductCategoryApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
 import com.sellfinity.core.domain.service.product.DeleteProductService;
 import com.sellfinity.core.domain.service.product.GetProductService;
@@ -16,7 +17,7 @@ public class ProductApplicationBeans {
   public SaveProductApplication saveProductProductApplication(SaveProductService saveProductService,
       GetCategoryApplication getCategoryApplication,
       SaveProductCategoryApplication saveProductCategoryApplication) {
-    return new SaveProductApplication(saveProductService, getCategoryApplication,
+    return new SaveProductApplication(saveProductService,
         saveProductCategoryApplication);
   }
 
@@ -28,13 +29,17 @@ public class ProductApplicationBeans {
 
   @Bean
   public DeleteProductApplication deleteProductApplication(
-      DeleteProductService deleteProductService) {
-    return new DeleteProductApplication(deleteProductService);
+      DeleteProductService deleteProductService,
+      DeleteProductCategoryApplication deleteProductCategoryApplication) {
+    return new DeleteProductApplication(deleteProductService, deleteProductCategoryApplication);
   }
 
   @Bean
   public UpdateProductApplication updateProductApplication(
-      UpdateProductService updateProductService, GetProductApplication getProductApplication) {
-    return new UpdateProductApplication(updateProductService, getProductApplication);
+      UpdateProductService updateProductService, GetProductApplication getProductApplication,
+      SaveProductCategoryApplication saveProductCategoryApplication,
+      DeleteProductCategoryApplication deleteProductCategoryApplication) {
+    return new UpdateProductApplication(updateProductService, getProductApplication,
+        deleteProductCategoryApplication, saveProductCategoryApplication);
   }
 }
