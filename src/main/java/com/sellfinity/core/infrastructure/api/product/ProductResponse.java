@@ -1,10 +1,10 @@
-package com.sellfinity.core.infrastructure.api.category;
+package com.sellfinity.core.infrastructure.api.product;
 
 import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class CategoryResponse {
+public class ProductResponse {
 
   private Long id;
   private String name;

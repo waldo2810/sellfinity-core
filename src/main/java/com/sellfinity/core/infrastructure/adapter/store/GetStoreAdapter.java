@@ -16,7 +16,6 @@ public class GetStoreAdapter implements GetStoreService {
   private final StoreRepository storeRepository;
   private final StoreRepositoryMapper storeRepositoryMapper;
 
-
   @Override
   public Store findStoreById(Long id) {
     return storeRepositoryMapper.toEntity(storeRepository.findById(id)
