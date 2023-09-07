@@ -3,6 +3,7 @@ package com.sellfinity.core.application.product;
 import com.sellfinity.core.application.category.GetCategoryApplication;
 import com.sellfinity.core.application.product_category.DeleteProductCategoryApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
+import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.domain.service.product.DeleteProductService;
 import com.sellfinity.core.domain.service.product.GetProductService;
 import com.sellfinity.core.domain.service.product.SaveProductService;
@@ -30,16 +31,19 @@ public class ProductApplicationBeans {
   @Bean
   public DeleteProductApplication deleteProductApplication(
       DeleteProductService deleteProductService,
-      DeleteProductCategoryApplication deleteProductCategoryApplication) {
-    return new DeleteProductApplication(deleteProductService, deleteProductCategoryApplication);
+      DeleteProductCategoryApplication deleteProductCategoryApplication,
+      GetStoreApplication getStoreApplication, GetProductApplication getProductApplication) {
+    return new DeleteProductApplication(deleteProductService, deleteProductCategoryApplication,
+        getStoreApplication, getProductApplication);
   }
 
   @Bean
   public UpdateProductApplication updateProductApplication(
       UpdateProductService updateProductService, GetProductApplication getProductApplication,
       SaveProductCategoryApplication saveProductCategoryApplication,
-      DeleteProductCategoryApplication deleteProductCategoryApplication) {
+      DeleteProductCategoryApplication deleteProductCategoryApplication,
+      GetStoreApplication getStoreApplication) {
     return new UpdateProductApplication(updateProductService, getProductApplication,
-        deleteProductCategoryApplication, saveProductCategoryApplication);
+        deleteProductCategoryApplication, saveProductCategoryApplication, getStoreApplication);
   }
 }

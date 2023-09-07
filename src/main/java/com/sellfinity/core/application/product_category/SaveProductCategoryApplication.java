@@ -15,7 +15,6 @@ public class SaveProductCategoryApplication {
   private final SaveProductCategoryService saveProductCategoryService;
   private final GetCategoryApplication getCategoryApplication;
 
-
   public ProductCategory saveProductCategory(ProductCategory productCategory) {
     return saveProductCategoryService.saveProductCategory(productCategory);
   }
@@ -23,10 +22,10 @@ public class SaveProductCategoryApplication {
   public void saveProductAndItsCategories(List<Long> categoryIds, Product savedProduct) {
     List<ProductCategory> productCategoryList = categoryIds.stream()
         .map(category -> {
-          Category categoryFind = getCategoryApplication.findCategoryById(category);
+          Category foundCategory = getCategoryApplication.findCategoryById(category);
           ProductCategory productCategory = new ProductCategory();
           productCategory.setProduct(savedProduct);
-          productCategory.setCategory(categoryFind);
+          productCategory.setCategory(foundCategory);
           productCategory.setStore(savedProduct.getStore());
           return productCategory;
         }).collect(Collectors.toList());

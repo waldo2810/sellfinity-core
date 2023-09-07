@@ -23,6 +23,4 @@ public class SaveProductApplication {
 
     return savedProduct;
   }
-
-
 }

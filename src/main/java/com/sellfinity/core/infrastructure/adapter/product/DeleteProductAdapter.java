@@ -15,7 +15,7 @@ public class DeleteProductAdapter implements DeleteProductService {
 
   @Override
   public void deleteProduct(Long id, Long idStore) {
-    productRepository.deleteByIdAndStoreId(id, idStore);
+    productRepository.deleteById(id);
     productCategoryRepository.deleteByProductIdAndStoreId(id, idStore);
   }
 }

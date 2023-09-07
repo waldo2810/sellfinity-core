@@ -8,5 +8,7 @@ public class DeleteProductCategoryApplication {
 
   private final DeleteProductCategoryService deleteProductCategoryService;
 
-  public void deleteProductCategory(Long productId,Long storeId) {deleteProductCategoryService.deleteProductCategory(productId,storeId);}
+  public void deleteProductCategory(Long productId, Long storeId) {
+    deleteProductCategoryService.deleteProductCategory(productId, storeId);
+  }
 }

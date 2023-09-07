@@ -33,35 +33,32 @@ public class ProductController {
   @PostMapping
   public ResponseEntity<ProductResponse> saveProduct(
       @Valid @RequestBody ProductRequest productRequest) {
-    List<Long> categoryIds = productRequest.getCategoryIds();
     return ResponseEntity.ok(productResponseMapper.toDto(
         saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest),
-            categoryIds)));
+            productRequest.getCategoryIds())));
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductResponse>> findAllCategories() {
+  public ResponseEntity<List<ProductResponse>> findAllProducts() {
     return ResponseEntity.ok(
         productResponseMapper.toDto(getProductApplication.findAllStores()));
   }
 
   @GetMapping("/search/{id}")
-  public ResponseEntity<ProductResponse> findCategoryById(@PathVariable("id") Long id) {
+  public ResponseEntity<ProductResponse> findProductById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
         productResponseMapper.toDto(getProductApplication.findProductById(id)));
   }
 
-  @DeleteMapping("/delete")
-  public void deleteProduct(@RequestParam("idProduct") Long idProduct,
-      @RequestParam("idStore") Long idStore) {
+  @DeleteMapping
+  public void deleteProduct(@RequestParam("productId") Long idProduct,
+      @RequestParam("storeId") Long idStore) {
     deleteProductApplication.deleteProduct(idProduct, idStore);
   }
 
-  @PutMapping("/update")
-  public void updateProduct(@RequestParam("idProduct") Long idProduct,
-      @RequestParam("idStore") Long idStore,
-      @Valid @RequestBody ProductRequest productRequest) {
-    updateProductApplication.updateProduct(idProduct, idStore,
-        productRequestMapper.toEntity(productRequest), productRequest.getCategoryIds());
+  @PutMapping
+  public void updateProduct(@Valid @RequestBody ProductRequest productRequest) {
+    updateProductApplication.updateProduct(productRequestMapper.toEntity(productRequest),
+        productRequest.getCategoryIds());
   }
 }
