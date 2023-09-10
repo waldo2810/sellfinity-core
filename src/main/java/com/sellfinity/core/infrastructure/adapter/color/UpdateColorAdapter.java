@@ -13,8 +13,8 @@ public class UpdateColorAdapter implements UpdateColorService {
   private final ColorRepository colorRepository;
 
   @Override
-  public void updateColor(Color color) {
-    colorRepository.updateColor(color.getId(), color.getName(), color.getValue(),
+  public void updateColor(Long id, Color color) {
+    colorRepository.updateColor(id, color.getName(), color.getValue(),
         color.getUpdatedAt());
   }
 }

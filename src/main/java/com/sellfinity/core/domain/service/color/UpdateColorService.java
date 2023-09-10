@@ -4,5 +4,5 @@ import com.sellfinity.core.domain.entity.Color;
 
 public interface UpdateColorService {
 
-  void updateColor(Color color);
+  void updateColor(Long id, Color color);
 }

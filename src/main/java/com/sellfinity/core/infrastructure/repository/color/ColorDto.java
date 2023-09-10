@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "categories")
+@Table(name = "colors")
 public class ColorDto {
 
   @Id

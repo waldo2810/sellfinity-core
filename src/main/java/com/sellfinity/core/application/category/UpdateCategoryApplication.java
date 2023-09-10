@@ -13,9 +13,9 @@ public class UpdateCategoryApplication {
   private final GetCategoryApplication getCategoryApplication;
 
   @Transactional
-  public void updateCategory(Long id, Category categoryRequest) {
+  public void updateCategory(Long id, Category category) {
     getCategoryApplication.findCategoryById(id);
-    categoryRequest.setUpdatedAt(LocalDateTime.now());
-    updateCategoryService.updateCategory(id, categoryRequest);
+    category.setUpdatedAt(LocalDateTime.now());
+    updateCategoryService.updateCategory(id, category);
   }
 }

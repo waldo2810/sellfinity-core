@@ -16,6 +16,6 @@ public class UpdateColorApplication {
   public void updateColor(Long id, Color color) {
     getColorApplication.findColorById(id);
     color.setUpdatedAt(LocalDateTime.now());
-    updateColorService.updateColor(color);
+    updateColorService.updateColor(id, color);
   }
 }

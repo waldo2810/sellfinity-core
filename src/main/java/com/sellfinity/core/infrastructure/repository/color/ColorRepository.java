@@ -14,6 +14,5 @@ public interface ColorRepository extends JpaRepository<ColorDto, Long> {
 
   @Modifying
   @Query("UPDATE ColorDto c SET c.name = :name, c.value = :value, c.updatedAt = :updatedAt WHERE c.id = :id")
-  void updateColor(Long id, String name, String value,
-      LocalDateTime updatedAt); // TODO CHECK IF UPDATES
+  void updateColor(Long id, String name, String value, LocalDateTime updatedAt);
 }
