@@ -13,8 +13,8 @@ public class UpdateProductAdapter implements UpdateProductService {
   private final ProductRepository productRepository;
 
   @Override
-  public void updateProduct(Product product) {
-    productRepository.updateProduct(product.getId(), product.getName(), product.getPrice(),
+  public void updateProduct(Long id, Product product) {
+    productRepository.updateProduct(id, product.getName(), product.getPrice(),
         product.getIsFeatured(), product.getIsArchived());
   }
 }

@@ -24,26 +24,25 @@ public class ProductApplicationBeans {
 
   @Bean
   public GetProductApplication getProductApplication(
-      GetProductService getProductService) {
-    return new GetProductApplication(getProductService);
+      GetProductService getProductService, GetStoreApplication getStoreApplication) {
+    return new GetProductApplication(getProductService, getStoreApplication);
   }
 
   @Bean
   public DeleteProductApplication deleteProductApplication(
       DeleteProductService deleteProductService,
       DeleteProductCategoryApplication deleteProductCategoryApplication,
-      GetStoreApplication getStoreApplication, GetProductApplication getProductApplication) {
+      GetProductApplication getProductApplication) {
     return new DeleteProductApplication(deleteProductService, deleteProductCategoryApplication,
-        getStoreApplication, getProductApplication);
+        getProductApplication);
   }
 
   @Bean
   public UpdateProductApplication updateProductApplication(
       UpdateProductService updateProductService, GetProductApplication getProductApplication,
       SaveProductCategoryApplication saveProductCategoryApplication,
-      DeleteProductCategoryApplication deleteProductCategoryApplication,
-      GetStoreApplication getStoreApplication) {
+      DeleteProductCategoryApplication deleteProductCategoryApplication) {
     return new UpdateProductApplication(updateProductService, getProductApplication,
-        deleteProductCategoryApplication, saveProductCategoryApplication, getStoreApplication);
+        deleteProductCategoryApplication, saveProductCategoryApplication);
   }
 }

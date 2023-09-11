@@ -2,7 +2,6 @@ package com.sellfinity.core.application.product;
 
 import com.sellfinity.core.application.product_category.DeleteProductCategoryApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
-import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.domain.entity.Product;
 import com.sellfinity.core.domain.service.product.UpdateProductService;
 import jakarta.transaction.Transactional;
@@ -16,17 +15,13 @@ public class UpdateProductApplication {
   private final GetProductApplication getProductApplication;
   private final DeleteProductCategoryApplication deleteProductCategoryApplication;
   private final SaveProductCategoryApplication saveProductCategoryApplication;
-  private final GetStoreApplication getStoreApplication;
 
   @Transactional
-  public void updateProduct(Product product, List<Long> categoryIds) {
-    getStoreApplication.findStoreById(product.getStore().getId());
-    getProductApplication.findProductById(product.getId());
-
-    deleteProductCategoryApplication.deleteProductCategory(product.getId(),
-        product.getStore().getId());
-    updateProductService.updateProduct(product);
-    Product updatedProduct = getProductApplication.findProductById(product.getId());
+  public void updateProduct(Long id, Product product, List<Long> categoryIds) {
+    getProductApplication.findProductById(id);
+    deleteProductCategoryApplication.deleteProductCategory(id, product.getStore().getId());
+    updateProductService.updateProduct(id, product);
+    Product updatedProduct = getProductApplication.findProductById(id);
     saveProductCategoryApplication.saveProductAndItsCategories(categoryIds, updatedProduct);
   }
 }

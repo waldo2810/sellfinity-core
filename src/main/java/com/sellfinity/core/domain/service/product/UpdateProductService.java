@@ -4,5 +4,5 @@ import com.sellfinity.core.domain.entity.Product;
 
 public interface UpdateProductService {
 
-  void updateProduct(Product product);
+  void updateProduct(Long id, Product product);
 }
