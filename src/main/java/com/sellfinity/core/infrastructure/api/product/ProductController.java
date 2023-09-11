@@ -4,6 +4,7 @@ import com.sellfinity.core.application.product.DeleteProductApplication;
 import com.sellfinity.core.application.product.GetProductApplication;
 import com.sellfinity.core.application.product.SaveProductApplication;
 import com.sellfinity.core.application.product.UpdateProductApplication;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,9 +40,10 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductResponse>> findAllProducts() {
+  public ResponseEntity<List<ProductResponse>> findAllProducts(
+      @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        productResponseMapper.toDto(getProductApplication.findAllStores()));
+        productResponseMapper.toDto(getProductApplication.findAllStores(storeId)));
   }
 
   @GetMapping("/search/{id}")
@@ -50,15 +52,15 @@ public class ProductController {
         productResponseMapper.toDto(getProductApplication.findProductById(id)));
   }
 
-  @DeleteMapping
-  public void deleteProduct(@RequestParam("productId") Long idProduct,
-      @RequestParam("storeId") Long idStore) {
-    deleteProductApplication.deleteProduct(idProduct, idStore);
+  @DeleteMapping("/delete/{id}")
+  public void deleteProduct(@PathVariable("id") Long id) {
+    deleteProductApplication.deleteProduct(id);
   }
 
-  @PutMapping
-  public void updateProduct(@Valid @RequestBody ProductRequest productRequest) {
-    updateProductApplication.updateProduct(productRequestMapper.toEntity(productRequest),
+  @PutMapping("/update/{id}")
+  public void updateProduct(
+      @Valid @RequestBody ProductRequest productRequest, @PathVariable("id") Long id) {
+    updateProductApplication.updateProduct(id, productRequestMapper.toEntity(productRequest),
         productRequest.getCategoryIds());
   }
 }

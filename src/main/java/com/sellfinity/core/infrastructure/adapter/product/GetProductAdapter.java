@@ -27,4 +27,8 @@ public class GetProductAdapter implements GetProductService {
     return productRepositoryMapper.toEntity(productRepository.findAll());
   }
 
+  @Override
+  public List<Product> findAllProductsByStoreId(Long storeId) {
+    return productRepositoryMapper.toEntity(productRepository.findAllByStore_Id(storeId));
+  }
 }

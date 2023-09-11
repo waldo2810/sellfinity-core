@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class ProductRequest {
 
-  private Long id;
   @NotNull
   private Long storeId;
   @NotNull
