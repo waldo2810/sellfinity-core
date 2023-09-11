@@ -16,7 +16,7 @@ public class DeleteProductApplication {
 
   @Transactional
   public void deleteProduct(Long id) {
-    Product existingProduct = getProductApplication.findProductById(id);
+    Product existingProduct = getProductApplication.findProductById(id).getProduct();
     Long storeId = existingProduct.getStore().getId();
     deleteProductCategoryApplication.deleteProductCategory(id, storeId);
     deleteProductService.deleteProduct(id);

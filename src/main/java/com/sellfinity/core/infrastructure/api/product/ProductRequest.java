@@ -11,6 +11,7 @@ public class ProductRequest {
   private Long storeId;
   @NotNull
   private List<Long> categoryIds;
+  private List<String> images;
   @NotNull
   private String name;
   @NotNull

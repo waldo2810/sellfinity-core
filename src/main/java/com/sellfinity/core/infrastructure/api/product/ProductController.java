@@ -29,6 +29,7 @@ public class ProductController {
   private final DeleteProductApplication deleteProductApplication;
   private final UpdateProductApplication updateProductApplication;
   private final ProductResponseMapper productResponseMapper;
+  private final ProductImageResponseMapper productImageResponseMapper;
   private final ProductRequestMapper productRequestMapper;
 
   @PostMapping
@@ -36,20 +37,20 @@ public class ProductController {
       @Valid @RequestBody ProductRequest productRequest) {
     return ResponseEntity.ok(productResponseMapper.toDto(
         saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest),
-            productRequest.getCategoryIds())));
+            productRequest.getCategoryIds(), productRequest.getImages())));
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductResponse>> findAllProducts(
+  public ResponseEntity<List<ProductImageResponse>> findAllProducts(
       @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        productResponseMapper.toDto(getProductApplication.findAllStores(storeId)));
+        productImageResponseMapper.toDto(getProductApplication.findAllProducts(storeId)));
   }
 
   @GetMapping("/search/{id}")
-  public ResponseEntity<ProductResponse> findProductById(@PathVariable("id") Long id) {
+  public ResponseEntity<ProductImageResponse> findProductById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-        productResponseMapper.toDto(getProductApplication.findProductById(id)));
+        productImageResponseMapper.toDto(getProductApplication.findProductById(id)));
   }
 
   @DeleteMapping("/delete/{id}")
@@ -61,6 +62,6 @@ public class ProductController {
   public void updateProduct(
       @Valid @RequestBody ProductRequest productRequest, @PathVariable("id") Long id) {
     updateProductApplication.updateProduct(id, productRequestMapper.toEntity(productRequest),
-        productRequest.getCategoryIds());
+        productRequest.getCategoryIds(), productRequest.getImages());
   }
 }

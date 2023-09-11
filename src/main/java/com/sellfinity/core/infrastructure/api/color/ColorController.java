@@ -29,28 +29,28 @@ public class ColorController {
   private final SaveColorApplication saveColorApplication;
   private final DeleteColorApplication deleteColorApplication;
   private final UpdateColorApplication updateColorApplication;
-  private final ColorResponseMapper ColorResponseMapper;
-  private final ColorRequestMapper ColorRequestMapper;
+  private final ColorResponseMapper colorResponseMapper;
+  private final ColorRequestMapper colorRequestMapper;
 
   @GetMapping
   public ResponseEntity<List<ColorResponse>> findAllColors(
       @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        ColorResponseMapper.toDto(getColorApplication.findAllColors(storeId)));
+        colorResponseMapper.toDto(getColorApplication.findAllColors(storeId)));
   }
 
   @GetMapping("/search/{id}")
   public ResponseEntity<ColorResponse> findColorById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-        ColorResponseMapper.toDto(getColorApplication.findColorById(id)));
+        colorResponseMapper.toDto(getColorApplication.findColorById(id)));
   }
 
   @PostMapping
   public ResponseEntity<ColorResponse> saveColor(
       @Valid @RequestBody ColorRequest Color) {
     return ResponseEntity.ok(
-        ColorResponseMapper.toDto(
-            saveColorApplication.saveColor(ColorRequestMapper.toEntity(Color))));
+        colorResponseMapper.toDto(
+            saveColorApplication.saveColor(colorRequestMapper.toEntity(Color))));
   }
 
   @DeleteMapping("/delete/{id}")
@@ -61,7 +61,7 @@ public class ColorController {
   @PutMapping("/update/{id}")
   public void updateColor(@PathVariable("id") Long id,
       @RequestBody ColorRequest ColorRequest) {
-    Color Color = ColorRequestMapper.toEntity(ColorRequest);
+    Color Color = colorRequestMapper.toEntity(ColorRequest);
     updateColorApplication.updateColor(id, Color);
   }
 }

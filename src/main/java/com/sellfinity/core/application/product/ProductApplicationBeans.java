@@ -1,6 +1,8 @@
 package com.sellfinity.core.application.product;
 
-import com.sellfinity.core.application.category.GetCategoryApplication;
+import com.sellfinity.core.application.image.DeleteImageApplication;
+import com.sellfinity.core.application.image.GetImageApplication;
+import com.sellfinity.core.application.image.SaveImageApplication;
 import com.sellfinity.core.application.product_category.DeleteProductCategoryApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
 import com.sellfinity.core.application.store.GetStoreApplication;
@@ -15,17 +17,18 @@ import org.springframework.context.annotation.Configuration;
 public class ProductApplicationBeans {
 
   @Bean
-  public SaveProductApplication saveProductProductApplication(SaveProductService saveProductService,
-      GetCategoryApplication getCategoryApplication,
-      SaveProductCategoryApplication saveProductCategoryApplication) {
-    return new SaveProductApplication(saveProductService,
-        saveProductCategoryApplication);
+  public SaveProductApplication createSaveProductApplication(SaveProductService saveProductService,
+      SaveProductCategoryApplication saveProductCategoryApplication,
+      SaveImageApplication saveImageApplication) {
+    return new SaveProductApplication(saveProductService, saveProductCategoryApplication,
+        saveImageApplication);
   }
 
   @Bean
   public GetProductApplication getProductApplication(
-      GetProductService getProductService, GetStoreApplication getStoreApplication) {
-    return new GetProductApplication(getProductService, getStoreApplication);
+      GetProductService getProductService, GetStoreApplication getStoreApplication,
+      GetImageApplication getImageApplication) {
+    return new GetProductApplication(getProductService, getStoreApplication, getImageApplication);
   }
 
   @Bean
@@ -41,8 +44,10 @@ public class ProductApplicationBeans {
   public UpdateProductApplication updateProductApplication(
       UpdateProductService updateProductService, GetProductApplication getProductApplication,
       SaveProductCategoryApplication saveProductCategoryApplication,
-      DeleteProductCategoryApplication deleteProductCategoryApplication) {
+      DeleteProductCategoryApplication deleteProductCategoryApplication,
+      DeleteImageApplication deleteImageApplication, SaveImageApplication saveImageApplication) {
     return new UpdateProductApplication(updateProductService, getProductApplication,
-        deleteProductCategoryApplication, saveProductCategoryApplication);
+        deleteProductCategoryApplication, deleteImageApplication, saveProductCategoryApplication,
+        saveImageApplication);
   }
 }

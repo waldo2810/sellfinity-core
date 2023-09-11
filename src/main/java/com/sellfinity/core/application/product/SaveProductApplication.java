@@ -1,6 +1,8 @@
 package com.sellfinity.core.application.product;
 
+import com.sellfinity.core.application.image.SaveImageApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
+import com.sellfinity.core.domain.entity.Image;
 import com.sellfinity.core.domain.entity.Product;
 import com.sellfinity.core.domain.service.product.SaveProductService;
 import jakarta.transaction.Transactional;
@@ -13,12 +15,20 @@ public class SaveProductApplication {
 
   private final SaveProductService saveProductService;
   private final SaveProductCategoryApplication saveProductCategoryApplication;
+  private final SaveImageApplication saveImageApplication;
 
   @Transactional
-  public Product saveProduct(Product product, List<Long> categoryIds) {
+  public Product saveProduct(Product product, List<Long> categoryIds, List<String> imageUrls) {
     product.setCreatedAt(LocalDateTime.now());
     Product savedProduct = saveProductService.saveProduct(product);
 
+    imageUrls.forEach(url -> {
+      Image image = new Image();
+      image.setUrl(url);
+      image.setProduct(savedProduct);
+      image.setCreatedAt(LocalDateTime.now());
+      saveImageApplication.saveImage(image);
+    });
     saveProductCategoryApplication.saveProductAndItsCategories(categoryIds, savedProduct);
 
     return savedProduct;
