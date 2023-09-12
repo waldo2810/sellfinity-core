@@ -1,5 +1,7 @@
 package com.sellfinity.core.application.color;
 
+import com.sellfinity.core.application.color.validator.DeleteColorValidator;
+import com.sellfinity.core.application.product.GetProductApplication;
 import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.domain.service.color.DeleteColorService;
 import com.sellfinity.core.domain.service.color.GetColorService;
@@ -25,13 +27,19 @@ public class ColorApplicationBeans {
 
   @Bean
   public DeleteColorApplication createDeleteColorApplication(
-      DeleteColorService deleteColorService) {
-    return new DeleteColorApplication(deleteColorService);
+      DeleteColorService deleteColorService, DeleteColorValidator deleteColorValidator) {
+    return new DeleteColorApplication(deleteColorService, deleteColorValidator);
   }
 
   @Bean
   public UpdateColorApplication createUpdateColorApplication(
       UpdateColorService updateColorService, GetColorApplication getColorApplication) {
     return new UpdateColorApplication(updateColorService, getColorApplication);
+  }
+
+  @Bean
+  public DeleteColorValidator createDeleteColorValidator(GetColorApplication getColorApplication,
+      GetProductApplication getProductApplication) {
+    return new DeleteColorValidator(getColorApplication, getProductApplication);
   }
 }

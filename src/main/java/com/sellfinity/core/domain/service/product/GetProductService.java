@@ -10,4 +10,10 @@ public interface GetProductService {
   List<Product> findAllProducts();
 
   List<Product> findAllProductsByStoreId(Long storeId);
+
+  List<Product> findAllProductsBySize(Long sizeId);
+
+  List<Product> findAllProductsByColor(Long colorId);
+
+  List<Product> findAllProductsByCategory(Long categoryId);
 }

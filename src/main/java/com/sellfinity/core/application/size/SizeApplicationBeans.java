@@ -1,5 +1,7 @@
 package com.sellfinity.core.application.size;
 
+import com.sellfinity.core.application.product.GetProductApplication;
+import com.sellfinity.core.application.size.validator.DeleteSizeValidator;
 import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.domain.service.size.DeleteSizeService;
 import com.sellfinity.core.domain.service.size.GetSizeService;
@@ -24,14 +26,20 @@ public class SizeApplicationBeans {
   }
 
   @Bean
-  public DeleteSizeApplication createDeleteSizeApplication(
-      DeleteSizeService deleteSizeService) {
-    return new DeleteSizeApplication(deleteSizeService);
+  public DeleteSizeApplication createDeleteSizeApplication(DeleteSizeService deleteSizeService,
+      DeleteSizeValidator deleteSizeValidator) {
+    return new DeleteSizeApplication(deleteSizeService, deleteSizeValidator);
   }
 
   @Bean
   public UpdateSizeApplication createUpdateSizeApplication(
       UpdateSizeService updateSizeService, GetSizeApplication getSizeApplication) {
     return new UpdateSizeApplication(updateSizeService, getSizeApplication);
+  }
+
+  @Bean
+  public DeleteSizeValidator createDeleteSizeValidator(GetSizeApplication getSizeApplication,
+      GetProductApplication getProductApplication) {
+    return new DeleteSizeValidator(getSizeApplication, getProductApplication);
   }
 }

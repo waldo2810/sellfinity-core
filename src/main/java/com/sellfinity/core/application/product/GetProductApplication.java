@@ -44,4 +44,16 @@ public class GetProductApplication {
         })
         .collect(Collectors.toList());
   }
+
+  public List<Product> findAllProductsBySize(Long sizeId) {
+    return getProductService.findAllProductsBySize(sizeId);
+  }
+
+  public List<Product> findAllProductsByColor(Long colorId) {
+    return getProductService.findAllProductsByColor(colorId);
+  }
+
+  public List<Product> findAllProductsByCategory(Long categoryId) {
+    return getProductService.findAllProductsByCategory(categoryId);
+  }
 }

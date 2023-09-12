@@ -4,7 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum ExceptionCode {
-  NOT_FOUND("ERR-001");
+
+  NOT_FOUND("ERR-001"),
+  CONFLICT("ERR-002");
 
   private final String code;
 
