@@ -1,5 +1,6 @@
 package com.sellfinity.core.infrastructure.api.product;
 
+import com.sellfinity.core.infrastructure.api.image.ImageRequest;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import lombok.Data;
@@ -11,7 +12,7 @@ public class ProductRequest {
   private Long storeId;
   @NotNull
   private List<Long> categoryIds;
-  private List<String> images;
+  private List<ImageRequest> images;
   @NotNull
   private String name;
   @NotNull

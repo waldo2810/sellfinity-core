@@ -4,6 +4,7 @@ import com.sellfinity.core.application.product.DeleteProductApplication;
 import com.sellfinity.core.application.product.GetProductApplication;
 import com.sellfinity.core.application.product.SaveProductApplication;
 import com.sellfinity.core.application.product.UpdateProductApplication;
+import com.sellfinity.core.infrastructure.api.image.ImageRequestMapper;
 import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -31,13 +32,15 @@ public class ProductController {
   private final ProductResponseMapper productResponseMapper;
   private final ProductImageResponseMapper productImageResponseMapper;
   private final ProductRequestMapper productRequestMapper;
+  private final ImageRequestMapper imageRequestMapper;
 
   @PostMapping
   public ResponseEntity<ProductResponse> saveProduct(
       @Valid @RequestBody ProductRequest productRequest) {
     return ResponseEntity.ok(productResponseMapper.toDto(
         saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest),
-            productRequest.getCategoryIds(), productRequest.getImages())));
+            productRequest.getCategoryIds(),
+            imageRequestMapper.toEntity(productRequest.getImages()))));
   }
 
   @GetMapping
@@ -62,6 +65,6 @@ public class ProductController {
   public void updateProduct(
       @Valid @RequestBody ProductRequest productRequest, @PathVariable("id") Long id) {
     updateProductApplication.updateProduct(id, productRequestMapper.toEntity(productRequest),
-        productRequest.getCategoryIds(), productRequest.getImages());
+        productRequest.getCategoryIds(), imageRequestMapper.toEntity(productRequest.getImages()));
   }
 }

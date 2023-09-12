@@ -25,7 +25,7 @@ public class UpdateProductApplication {
 
   @Transactional
   public void updateProduct(Long id, Product product, List<Long> categoryIds,
-      List<String> imageUrls) {
+      List<Image> images) {
     getProductApplication.findProductById(id);
 
     deleteProductCategoryApplication.deleteProductCategory(id, product.getStore().getId());
@@ -35,11 +35,9 @@ public class UpdateProductApplication {
 
     saveProductCategoryApplication.saveProductAndItsCategories(categoryIds, updatedProduct);
 
-    if (Objects.nonNull(imageUrls)) {
+    if (Objects.nonNull(images)) {
       deleteImageApplication.deleteImageByProductId(id);
-      imageUrls.forEach(url -> {
-        Image image = new Image();
-        image.setUrl(url);
+      images.forEach(image -> {
         image.setProduct(updatedProduct);
         image.setCreatedAt(LocalDateTime.now());
         saveImageApplication.saveImage(image);

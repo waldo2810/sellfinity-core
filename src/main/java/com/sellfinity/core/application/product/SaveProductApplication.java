@@ -18,13 +18,11 @@ public class SaveProductApplication {
   private final SaveImageApplication saveImageApplication;
 
   @Transactional
-  public Product saveProduct(Product product, List<Long> categoryIds, List<String> imageUrls) {
+  public Product saveProduct(Product product, List<Long> categoryIds, List<Image> images) {
     product.setCreatedAt(LocalDateTime.now());
     Product savedProduct = saveProductService.saveProduct(product);
 
-    imageUrls.forEach(url -> {
-      Image image = new Image();
-      image.setUrl(url);
+    images.forEach(image -> {
       image.setProduct(savedProduct);
       image.setCreatedAt(LocalDateTime.now());
       saveImageApplication.saveImage(image);
