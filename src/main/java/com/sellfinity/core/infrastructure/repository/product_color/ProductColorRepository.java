@@ -1,0 +1,12 @@
+package com.sellfinity.core.infrastructure.repository.product_color;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+public interface ProductColorRepository extends JpaRepository<ProductColorDto, Long> {
+
+  @Modifying
+  @Query("DELETE FROM ProductColorDto pc WHERE pc.product.id = :productId AND pc.store.id = :storeId")
+  void deleteByProductIdAndStoreId(Long productId, Long storeId);
+}

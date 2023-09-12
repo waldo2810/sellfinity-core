@@ -5,6 +5,10 @@ import com.sellfinity.core.application.image.GetImageApplication;
 import com.sellfinity.core.application.image.SaveImageApplication;
 import com.sellfinity.core.application.product_category.DeleteProductCategoryApplication;
 import com.sellfinity.core.application.product_category.SaveProductCategoryApplication;
+import com.sellfinity.core.application.product_color.DeleteProductColorApplication;
+import com.sellfinity.core.application.product_color.SaveProductColorApplication;
+import com.sellfinity.core.application.product_size.DeleteProductSizeApplication;
+import com.sellfinity.core.application.product_size.SaveProductSizeApplication;
 import com.sellfinity.core.application.store.GetStoreApplication;
 import com.sellfinity.core.domain.service.product.DeleteProductService;
 import com.sellfinity.core.domain.service.product.GetProductService;
@@ -19,9 +23,11 @@ public class ProductApplicationBeans {
   @Bean
   public SaveProductApplication createSaveProductApplication(SaveProductService saveProductService,
       SaveProductCategoryApplication saveProductCategoryApplication,
+      SaveProductSizeApplication saveProductSizeApplication,
+      SaveProductColorApplication saveProductColorApplication,
       SaveImageApplication saveImageApplication) {
     return new SaveProductApplication(saveProductService, saveProductCategoryApplication,
-        saveImageApplication);
+        saveProductSizeApplication, saveProductColorApplication, saveImageApplication);
   }
 
   @Bean
@@ -35,9 +41,14 @@ public class ProductApplicationBeans {
   public DeleteProductApplication deleteProductApplication(
       DeleteProductService deleteProductService,
       DeleteProductCategoryApplication deleteProductCategoryApplication,
+      DeleteProductSizeApplication deleteProductSizeApplication,
+      DeleteProductColorApplication deleteProductColorApplication,
+      DeleteImageApplication deleteImageApplication,
+      GetImageApplication getImageApplication,
       GetProductApplication getProductApplication) {
     return new DeleteProductApplication(deleteProductService, deleteProductCategoryApplication,
-        getProductApplication);
+        deleteProductSizeApplication, deleteProductColorApplication, deleteImageApplication,
+        getImageApplication, getProductApplication);
   }
 
   @Bean

@@ -12,6 +12,10 @@ public class ProductRequest {
   private Long storeId;
   @NotNull
   private List<Long> categoryIds;
+  @NotNull
+  private List<Long> sizeIds;
+  @NotNull
+  private List<Long> colorIds;
   private List<ImageRequest> images;
   @NotNull
   private String name;

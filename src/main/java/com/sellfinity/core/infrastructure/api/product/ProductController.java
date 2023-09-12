@@ -38,8 +38,11 @@ public class ProductController {
   public ResponseEntity<ProductResponse> saveProduct(
       @Valid @RequestBody ProductRequest productRequest) {
     return ResponseEntity.ok(productResponseMapper.toDto(
-        saveProductApplication.saveProduct(productRequestMapper.toEntity(productRequest),
+        saveProductApplication.saveProduct(
+            productRequestMapper.toEntity(productRequest),
             productRequest.getCategoryIds(),
+            productRequest.getSizeIds(),
+            productRequest.getColorIds(),
             imageRequestMapper.toEntity(productRequest.getImages()))));
   }
 
