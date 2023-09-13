@@ -11,4 +11,8 @@ public class DeleteProductColorApplication {
   public void deleteProductColor(Long productId, Long storeId) {
     deleteProductColorService.deleteProductColor(productId, storeId);
   }
+
+  public void deleteAllProductColorsByProductId(Long id) {
+    deleteProductColorService.deleteAllProductColorsByProductId(id);
+  }
 }

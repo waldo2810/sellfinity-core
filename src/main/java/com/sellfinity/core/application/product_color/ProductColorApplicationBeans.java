@@ -20,4 +20,13 @@ public class ProductColorApplicationBeans {
       DeleteProductColorService deleteProductColorService) {
     return new DeleteProductColorApplication(deleteProductColorService);
   }
+
+  @Bean
+  public UpdateProductColorApplication updateProductColorApplication(
+      DeleteProductColorApplication deleteProductColorApplication,
+      GetColorApplication getColorApplication,
+      SaveProductColorApplication saveProductColorApplication) {
+    return new UpdateProductColorApplication(deleteProductColorApplication, getColorApplication,
+        saveProductColorApplication);
+  }
 }

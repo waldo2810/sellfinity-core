@@ -24,4 +24,10 @@ public class ImageApplicationBeans {
       DeleteImageService deleteImageService) {
     return new DeleteImageApplication(deleteImageService);
   }
+
+  @Bean
+  public UpdateImageApplication createUpdateImageApplication(
+      DeleteImageApplication deleteImageApplication, SaveImageApplication saveImageApplication) {
+    return new UpdateImageApplication(deleteImageApplication, saveImageApplication);
+  }
 }

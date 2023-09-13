@@ -10,4 +10,6 @@ public interface GetColorService {
   Color findColorById(Long id);
 
   List<Color> findAllColorsByStoreId(Long storeId);
+
+  List<Color> findAllByProductId(Long id);
 }

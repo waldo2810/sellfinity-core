@@ -10,4 +10,6 @@ public interface GetSizeService {
   Size findSizeById(Long id);
 
   List<Size> findAllSizesByStoreId(Long storeId);
+
+  List<Size> findAllSizesByProductId(Long id);
 }

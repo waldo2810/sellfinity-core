@@ -25,4 +25,8 @@ public class GetSizeApplication {
   public Size findSizeById(Long id) {
     return getSizeService.findSizeById(id);
   }
+
+  public List<Size> findAllSizesByProduct(Long id) {
+    return getSizeService.findAllSizesByProductId(id);
+  }
 }

@@ -12,4 +12,6 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
   void deleteByProductIdAndStoreId(Long productId, Long storeId);
 
   List<ProductCategoryDto> findAllByCategory_Id(Long catId);
+
+  List<ProductCategoryDto> findAllByProduct_Id(Long id);
 }

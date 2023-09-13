@@ -18,4 +18,9 @@ public class GetProductCategoryAdapter {
     return productCategoryRepositoryMapper.toEntity(
         productCategoryRepository.findAllByCategory_Id(catId));
   }
+
+  public List<ProductCategory> findAllByProductId(Long id) {
+    return productCategoryRepositoryMapper.toEntity(
+        productCategoryRepository.findAllByProduct_Id(id));
+  }
 }

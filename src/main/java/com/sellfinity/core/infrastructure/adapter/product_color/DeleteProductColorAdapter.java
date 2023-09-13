@@ -15,4 +15,9 @@ public class DeleteProductColorAdapter implements DeleteProductColorService {
   public void deleteProductColor(Long productId, Long storeId) {
     productColorRepository.deleteByProductIdAndStoreId(productId, storeId);
   }
+
+  @Override
+  public void deleteAllProductColorsByProductId(Long id) {
+    productColorRepository.deleteAllByProduct_Id(id);
+  }
 }

@@ -12,4 +12,8 @@ public interface ProductSizeRepository extends JpaRepository<ProductSizeDto, Lon
   void deleteByProductIdAndStoreId(Long productId, Long storeId);
 
   List<ProductSizeDto> findAllBySize_Id(Long sizeId);
+
+  List<ProductSizeDto> findAllByProduct_Id(Long id);
+
+  void deleteAllByProduct_Id(Long id);
 }

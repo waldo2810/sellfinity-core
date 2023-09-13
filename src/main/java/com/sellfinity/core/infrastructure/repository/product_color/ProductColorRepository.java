@@ -12,4 +12,8 @@ public interface ProductColorRepository extends JpaRepository<ProductColorDto, L
   void deleteByProductIdAndStoreId(Long productId, Long storeId);
 
   List<ProductColorDto> findAllByColor_Id(Long colorId);
+
+  List<ProductColorDto> findAllByProduct_Id(Long id);
+
+  void deleteAllByProduct_Id(Long id);
 }

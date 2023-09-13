@@ -15,4 +15,9 @@ public class DeleteProductSizeAdapter implements DeleteProductSizeService {
   public void deleteProductSize(Long productId, Long storeId) {
     productSizeRepository.deleteByProductIdAndStoreId(productId, storeId);
   }
+
+  @Override
+  public void deleteAllProductSizesByProductId(Long id) {
+    productSizeRepository.deleteAllByProduct_Id(id);
+  }
 }

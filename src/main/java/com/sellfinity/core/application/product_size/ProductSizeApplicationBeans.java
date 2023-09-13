@@ -20,4 +20,13 @@ public class ProductSizeApplicationBeans {
       DeleteProductSizeService deleteProductSizeService) {
     return new DeleteProductSizeApplication(deleteProductSizeService);
   }
+
+  @Bean
+  public UpdateProductSizeApplication updateProductSizeApplication(
+      DeleteProductSizeApplication deleteProductSizeApplication,
+      GetSizeApplication getSizeApplication,
+      SaveProductSizeApplication saveProductSizeApplication) {
+    return new UpdateProductSizeApplication(deleteProductSizeApplication, getSizeApplication,
+        saveProductSizeApplication);
+  }
 }

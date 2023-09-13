@@ -25,4 +25,8 @@ public class GetColorApplication {
   public Color findColorById(Long id) {
     return getColorService.findColorById(id);
   }
+
+  public List<Color> findAllColorsByProduct(Long id) {
+    return getColorService.findAllByProductId(id);
+  }
 }

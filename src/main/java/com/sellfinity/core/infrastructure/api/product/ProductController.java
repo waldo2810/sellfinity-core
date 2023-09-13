@@ -30,7 +30,7 @@ public class ProductController {
   private final DeleteProductApplication deleteProductApplication;
   private final UpdateProductApplication updateProductApplication;
   private final ProductResponseMapper productResponseMapper;
-  private final ProductImageResponseMapper productImageResponseMapper;
+  private final ProductDataResponseMapper productDataResponseMapper;
   private final ProductRequestMapper productRequestMapper;
   private final ImageRequestMapper imageRequestMapper;
 
@@ -47,16 +47,16 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductImageResponse>> findAllProducts(
+  public ResponseEntity<List<ProductDataResponse>> findAllProducts(
       @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        productImageResponseMapper.toDto(getProductApplication.findAllProducts(storeId)));
+        productDataResponseMapper.toDto(getProductApplication.findAllProducts(storeId)));
   }
 
   @GetMapping("/search/{id}")
-  public ResponseEntity<ProductImageResponse> findProductById(@PathVariable("id") Long id) {
+  public ResponseEntity<ProductDataResponse> findProductById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-        productImageResponseMapper.toDto(getProductApplication.findProductById(id)));
+        productDataResponseMapper.toDto(getProductApplication.findProductById(id)));
   }
 
   @DeleteMapping("/delete/{id}")
@@ -68,6 +68,7 @@ public class ProductController {
   public void updateProduct(
       @Valid @RequestBody ProductRequest productRequest, @PathVariable("id") Long id) {
     updateProductApplication.updateProduct(id, productRequestMapper.toEntity(productRequest),
-        productRequest.getCategoryIds(), imageRequestMapper.toEntity(productRequest.getImages()));
+        productRequest.getCategoryIds(), productRequest.getSizeIds(), productRequest.getColorIds(),
+        imageRequestMapper.toEntity(productRequest.getImages()));
   }
 }

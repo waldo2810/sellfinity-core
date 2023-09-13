@@ -15,7 +15,7 @@ public class GetCategoryApplication {
   private final GetStoreApplication getStoreApplication;
 
   public List<Category> findAllCategories(@Nullable Long storeId) {
-    if (Objects.nonNull(storeId)){
+    if (Objects.nonNull(storeId)) {
       getStoreApplication.findStoreById(storeId);
       return getCategoryService.findAllCategoriesByStoreId(storeId);
     }
@@ -24,5 +24,9 @@ public class GetCategoryApplication {
 
   public Category findCategoryById(Long id) {
     return getCategoryService.findCategoryById(id);
+  }
+
+  public List<Category> findAllCategoriesByProduct(Long id) {
+    return getCategoryService.findAllCategoriesByProductId(id);
   }
 }

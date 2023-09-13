@@ -10,4 +10,6 @@ public interface GetCategoryService {
   Category findCategoryById(Long id);
 
   List<Category> findAllCategoriesByStoreId(Long storeId);
+
+  List<Category> findAllCategoriesByProductId(Long id);
 }
