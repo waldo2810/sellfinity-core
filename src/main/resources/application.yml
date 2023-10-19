@@ -1,17 +1,9 @@
+info:
+  application:
+    name: sellfinity
+    description: Sellfinity Core Component
+    author: Waldo Sobrino
+    version: 1.0
 spring:
-  datasource:
-    url: jdbc:postgresql://${DATABASE_HOST}/${DATABASE_NAME}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-      format_sql: true
-    properties:
-      show-sql: true
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-server:
-  error:
-    include-message: always
+  profiles:
+    active: dev
