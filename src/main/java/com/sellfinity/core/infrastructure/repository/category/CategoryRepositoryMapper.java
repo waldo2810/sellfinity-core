@@ -1,15 +1,10 @@
 package com.sellfinity.core.infrastructure.repository.category;
 
 import com.sellfinity.core.domain.entity.Category;
-import java.util.List;
+import com.sellfinity.core.shared.mapper.EntityToDto;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface CategoryRepositoryMapper {
+public interface CategoryRepositoryMapper extends EntityToDto<Category, CategoryDto> {
 
-  Category toEntity(CategoryDto categoryDto);
-
-  List<Category> toEntity(List<CategoryDto> dtos);
-
-  CategoryDto toDto(Category category);
 }

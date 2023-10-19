@@ -8,4 +8,8 @@ public interface GetCategoryService {
   List<Category> findAllCategories();
 
   Category findCategoryById(Long id);
+
+  List<Category> findAllCategoriesByStoreId(Long storeId);
+
+  List<Category> findAllCategoriesByProductId(Long id);
 }

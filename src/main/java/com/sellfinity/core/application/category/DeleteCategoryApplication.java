@@ -1,5 +1,6 @@
 package com.sellfinity.core.application.category;
 
+import com.sellfinity.core.application.category.validator.DeleteCategoryValidator;
 import com.sellfinity.core.domain.service.category.DeleteCategoryService;
 import lombok.AllArgsConstructor;
 
@@ -7,8 +8,10 @@ import lombok.AllArgsConstructor;
 public class DeleteCategoryApplication {
 
   private final DeleteCategoryService deleteCategoryService;
+  private final DeleteCategoryValidator deleteCategoryValidator;
 
   public void deleteCategory(Long id) {
+    deleteCategoryValidator.validateCategory(id);
     deleteCategoryService.deleteCategory(id);
   }
 }

@@ -5,6 +5,7 @@ import com.sellfinity.core.application.category.GetCategoryApplication;
 import com.sellfinity.core.application.category.SaveCategoryApplication;
 import com.sellfinity.core.application.category.UpdateCategoryApplication;
 import com.sellfinity.core.domain.entity.Category;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,22 +33,22 @@ public class CategoryController {
   private final CategoryRequestMapper categoryRequestMapper;
 
   @GetMapping
-  public ResponseEntity<List<CategoryResponse>> findAllCategories() {
+  public ResponseEntity<List<CategoryResponse>> findAllCategories(@Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(getCategoryApplication.findAllCategories()));
+        categoryResponseMapper.toDto(getCategoryApplication.findAllCategories(storeId)));
   }
 
   @GetMapping("/search/{id}")
   public ResponseEntity<CategoryResponse> findCategoryById(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(getCategoryApplication.findCategoryById(id)));
+        categoryResponseMapper.toDto(getCategoryApplication.findCategoryById(id)));
   }
 
   @PostMapping
   public ResponseEntity<CategoryResponse> saveCategory(
       @Valid @RequestBody CategoryRequest category) {
     return ResponseEntity.ok(
-        categoryResponseMapper.toResponse(
+        categoryResponseMapper.toDto(
             saveCategoryApplication.saveCategory(categoryRequestMapper.toEntity(category))));
   }
 

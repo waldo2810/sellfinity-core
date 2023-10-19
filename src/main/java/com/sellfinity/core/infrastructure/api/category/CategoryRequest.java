@@ -8,5 +8,6 @@ public class CategoryRequest {
 
   @NotNull(message = "A category must have a name")
   private String name;
-  private Long billboardId;
+  @NotNull(message = "A category must belong to a store")
+  private Long storeId;
 }
