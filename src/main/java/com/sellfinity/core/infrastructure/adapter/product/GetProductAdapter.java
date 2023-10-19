@@ -62,4 +62,9 @@ public class GetProductAdapter implements GetProductService {
     return productCategoryList.stream().map(ProductCategory::getProduct)
         .collect(Collectors.toList());
   }
+
+  @Override
+  public List<Product> findFeaturedProductsByStoreId(Long storeId) {
+    return productRepositoryMapper.toEntity(productRepository.findByIsFeaturedTrue());
+  }
 }

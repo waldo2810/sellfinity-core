@@ -38,9 +38,15 @@ public class GetProductApplication {
     return new ProductData(foundProduct, sizes, colors, categories, images);
   }
 
-  public List<ProductData> findAllProducts(@Nullable Long storeId) {
+  public List<ProductData> findAllProducts(@Nullable Long storeId, @Nullable String isFeatured) {
     if (Objects.nonNull(storeId)) {
       getStoreApplication.findStoreById(storeId);
+
+      if (Objects.nonNull(isFeatured)) {
+        List<Product> featuredProducts = getProductService.findFeaturedProductsByStoreId(storeId);
+        return buildProductData(featuredProducts);
+      }
+
       List<Product> products = getProductService.findAllProductsByStoreId(storeId);
       return buildProductData(products);
     }

@@ -15,7 +15,7 @@
   <name>sellfinity core</name>
   <description>sellfinity backend</description>
   <properties>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
   </properties>
   <dependencies>
@@ -86,5 +86,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

@@ -48,9 +48,11 @@ public class ProductController {
 
   @GetMapping
   public ResponseEntity<List<ProductDataResponse>> findAllProducts(
-      @Nullable @RequestParam("storeId") Long storeId) {
+      @Nullable @RequestParam("storeId") Long storeId,
+      @Nullable @RequestParam("isFeatured") String isFeatured) {
     return ResponseEntity.ok(
-        productDataResponseMapper.toDto(getProductApplication.findAllProducts(storeId)));
+        productDataResponseMapper.toDto(
+            getProductApplication.findAllProducts(storeId, isFeatured)));
   }
 
   @GetMapping("/search/{id}")

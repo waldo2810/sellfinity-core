@@ -12,4 +12,6 @@ public interface ProductRepository extends JpaRepository<ProductDto, Long> {
   void updateProduct(Long id, String name, Double price, Boolean isFeatured, Boolean isArchived);
 
   List<ProductDto> findAllByStore_Id(Long storeId);
+
+  List<ProductDto> findByIsFeaturedTrue();
 }

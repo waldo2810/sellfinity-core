@@ -16,4 +16,6 @@ public interface GetProductService {
   List<Product> findAllProductsByColor(Long colorId);
 
   List<Product> findAllProductsByCategory(Long categoryId);
+
+  List<Product> findFeaturedProductsByStoreId(Long storeId);
 }
