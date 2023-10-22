@@ -76,4 +76,8 @@ public class GetProductApplication {
       return new ProductData(product, sizes, colors, categories, images);
     }).collect(Collectors.toList());
   }
+
+  public Long getProductCount(Long storeId) {
+    return getProductService.getProductCount(storeId);
+  }
 }
