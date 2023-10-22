@@ -73,4 +73,9 @@ public class ProductController {
         productRequest.getCategoryIds(), productRequest.getSizeIds(), productRequest.getColorIds(),
         imageRequestMapper.toEntity(productRequest.getImages()));
   }
+
+  @GetMapping("/stock-count")
+  public Long getProductCount(@RequestParam("storeId") Long storeId) {
+    return getProductApplication.getProductCount(storeId);
+  }
 }

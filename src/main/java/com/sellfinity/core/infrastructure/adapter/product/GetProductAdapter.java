@@ -67,4 +67,9 @@ public class GetProductAdapter implements GetProductService {
   public List<Product> findFeaturedProductsByStoreId(Long storeId) {
     return productRepositoryMapper.toEntity(productRepository.findByIsFeaturedTrue());
   }
+
+  @Override
+  public Long getProductCount(Long storeId) {
+    return productRepository.count();
+  }
 }

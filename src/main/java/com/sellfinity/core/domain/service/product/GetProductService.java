@@ -18,4 +18,6 @@ public interface GetProductService {
   List<Product> findAllProductsByCategory(Long categoryId);
 
   List<Product> findFeaturedProductsByStoreId(Long storeId);
+
+  Long getProductCount(Long storeId);
 }
