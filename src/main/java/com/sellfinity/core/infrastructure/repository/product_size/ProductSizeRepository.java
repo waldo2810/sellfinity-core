@@ -11,9 +11,9 @@ public interface ProductSizeRepository extends JpaRepository<ProductSizeDto, Lon
   @Query("DELETE FROM ProductSizeDto pc WHERE pc.product.id = :productId AND pc.store.id = :storeId")
   void deleteByProductIdAndStoreId(Long productId, Long storeId);
 
-  List<ProductSizeDto> findAllBySize_Id(Long sizeId);
-
   List<ProductSizeDto> findAllByProduct_Id(Long id);
 
   void deleteAllByProduct_Id(Long id);
+
+  List<ProductSizeDto> findAllBySize_IdAndStore_Id(Long sizeId, Long storeId);
 }

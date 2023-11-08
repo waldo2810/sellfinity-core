@@ -10,8 +10,8 @@ public class DeleteSizeApplication {
   private final DeleteSizeService deleteSizeService;
   private final DeleteSizeValidator deleteSizeValidator;
 
-  public void deleteSize(Long id) {
-    deleteSizeValidator.validateSize(id);
+  public void deleteSize(Long id, Long storeId) {
+    deleteSizeValidator.validateSize(id, storeId);
     deleteSizeService.deleteSize(id);
   }
 }

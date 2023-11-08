@@ -10,8 +10,8 @@ public class DeleteCategoryApplication {
   private final DeleteCategoryService deleteCategoryService;
   private final DeleteCategoryValidator deleteCategoryValidator;
 
-  public void deleteCategory(Long id) {
-    deleteCategoryValidator.validateCategory(id);
+  public void deleteCategory(Long id, Long storeId) {
+    deleteCategoryValidator.validateCategory(id, storeId);
     deleteCategoryService.deleteCategory(id);
   }
 }

@@ -11,14 +11,14 @@ public class DeleteSizeValidator {
   private final GetSizeApplication getSizeApplication;
   private final GetProductApplication getProductApplication;
 
-  public void validateSize(Long sizeId) {
+  public void validateSize(Long sizeId, Long storeId) {
     getSizeApplication.findSizeById(sizeId);
-    if (isRelatedToProducts(sizeId)) {
+    if (isRelatedToProducts(sizeId, storeId)) {
       throw new SizeBelongsToProductException(String.valueOf(sizeId));
     }
   }
 
-  private boolean isRelatedToProducts(Long sizeId) {
-    return getProductApplication.findAllProductsBySize(sizeId).size() > 0;
+  private boolean isRelatedToProducts(Long sizeId, Long storeId) {
+    return !getProductApplication.findAllProductsBySize(sizeId, storeId).isEmpty();
   }
 }

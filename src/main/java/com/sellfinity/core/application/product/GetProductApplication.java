@@ -12,9 +12,9 @@ import com.sellfinity.core.domain.entity.Product;
 import com.sellfinity.core.domain.entity.ProductData;
 import com.sellfinity.core.domain.entity.Size;
 import com.sellfinity.core.domain.service.product.GetProductService;
-import jakarta.annotation.Nullable;
+import com.sellfinity.core.infrastructure.api.product.FindProductRequest;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 
@@ -38,32 +38,66 @@ public class GetProductApplication {
     return new ProductData(foundProduct, sizes, colors, categories, images);
   }
 
-  public List<ProductData> findAllProducts(@Nullable Long storeId, @Nullable String isFeatured) {
-    if (Objects.nonNull(storeId)) {
-      getStoreApplication.findStoreById(storeId);
 
-      if (Objects.nonNull(isFeatured)) {
-        List<Product> featuredProducts = getProductService.findFeaturedProductsByStoreId(storeId);
+  public List<ProductData> findAllProductsCriteria(FindProductRequest req) {
+    return buildProductData(getProductService.findAllProductsCriteria(req));
+  }
+
+  public List<ProductData> findAllProducts(FindProductRequest req) {
+    Boolean isFeatured = req.getIsFeatured();
+    Long storeId = req.getStoreId();
+    Long categoryId = req.getCategoryId();
+    Long sizeId = req.getSizeId();
+    Long colorId = req.getColorId();
+
+    if (storeId != null) {
+      getStoreApplication.findStoreById(req.getStoreId());
+      List<Product> collectedProducts = new ArrayList<>();
+
+      if (isFeatured != null) {
+        List<Product> featuredProducts = getProductService.findFeaturedProductsByStoreId(
+            req.getStoreId());
         return buildProductData(featuredProducts);
       }
+      if (categoryId != null) {
+        List<Product> productsByCategory = getProductService.findAllProductsByCategory(categoryId,
+            storeId);
+        collectedProducts.addAll(productsByCategory);
+//        return buildProductData(productsByCategory);
+      }
+      if (sizeId != null) {
+        List<Product> productsBySize = getProductService.findAllProductsBySize(sizeId, storeId);
+        collectedProducts.addAll(productsBySize);
+//        return buildProductData(productsBySize);
+      }
+      if (colorId != null) {
+        List<Product> productsByColor = getProductService.findAllProductsByColor(colorId,
+            storeId);
+        collectedProducts.addAll(productsByColor);
+//        return buildProductData(productsByColor);
+      }
 
-      List<Product> products = getProductService.findAllProductsByStoreId(storeId);
-      return buildProductData(products);
+      if (!collectedProducts.isEmpty()) {
+        return buildProductData(collectedProducts);
+      } else {
+        List<Product> products = getProductService.findAllProductsByStoreId(storeId);
+        return buildProductData(products);
+      }
     }
     List<Product> products = getProductService.findAllProducts();
     return buildProductData(products);
   }
 
-  public List<Product> findAllProductsBySize(Long sizeId) {
-    return getProductService.findAllProductsBySize(sizeId);
+  public List<Product> findAllProductsBySize(Long sizeId, Long storeId) {
+    return getProductService.findAllProductsBySize(sizeId, storeId);
   }
 
-  public List<Product> findAllProductsByColor(Long colorId) {
-    return getProductService.findAllProductsByColor(colorId);
+  public List<Product> findAllProductsByColor(Long colorId, Long storeId) {
+    return getProductService.findAllProductsByColor(colorId, storeId);
   }
 
-  public List<Product> findAllProductsByCategory(Long categoryId) {
-    return getProductService.findAllProductsByCategory(categoryId);
+  public List<Product> findAllProductsByCategory(Long categoryId, Long storeId) {
+    return getProductService.findAllProductsByCategory(categoryId, storeId);
   }
 
   private List<ProductData> buildProductData(List<Product> products) {

@@ -14,8 +14,9 @@ public class GetProductColorAdapter {
   private final ProductColorRepository productSizeRepository;
   private final ProductColorRepositoryMapper productSizeRepositoryMapper;
 
-  public List<ProductColor> findAllProductColorByColor(Long colorId) {
-    return productSizeRepositoryMapper.toEntity(productSizeRepository.findAllByColor_Id(colorId));
+  public List<ProductColor> findAllProductColorByColor(Long colorId, Long storeId) {
+    return productSizeRepositoryMapper.toEntity(
+        productSizeRepository.findAllByColor_IdAndStore_Id(colorId, storeId));
   }
 
   public List<ProductColor> findAllColorsByProductId(Long id) {

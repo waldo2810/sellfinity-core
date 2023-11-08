@@ -1,5 +1,6 @@
 package com.sellfinity.core.infrastructure.repository.size;
 
+import com.sellfinity.core.infrastructure.repository.product_size.ProductSizeDto;
 import com.sellfinity.core.infrastructure.repository.store.StoreDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,9 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -31,4 +34,6 @@ public class SizeDto {
   @NotNull
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
+  @OneToMany(mappedBy = "size")
+  private List<ProductSizeDto> sizeProducts;
 }

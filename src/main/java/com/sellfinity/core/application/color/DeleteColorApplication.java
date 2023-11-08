@@ -10,8 +10,8 @@ public class DeleteColorApplication {
   private final DeleteColorService deleteColorService;
   private final DeleteColorValidator deleteColorValidator;
 
-  public void deleteColor(Long id) {
-    deleteColorValidator.validateColor(id);
+  public void deleteColor(Long id, Long storeId) {
+    deleteColorValidator.validateColor(id, storeId);
     deleteColorService.deleteColor(id);
   }
 }

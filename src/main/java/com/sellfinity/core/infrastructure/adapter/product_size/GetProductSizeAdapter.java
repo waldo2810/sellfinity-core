@@ -16,8 +16,9 @@ public class GetProductSizeAdapter implements GetProductSizeService {
   private final ProductSizeRepositoryMapper productSizeRepositoryMapper;
 
   @Override
-  public List<ProductSize> findAllProductSizesBySize(Long sizeId) {
-    return productSizeRepositoryMapper.toEntity(productSizeRepository.findAllBySize_Id(sizeId));
+  public List<ProductSize> findAllProductSizesBySize(Long sizeId, Long storeId) {
+    return productSizeRepositoryMapper.toEntity(
+        productSizeRepository.findAllBySize_IdAndStore_Id(sizeId, storeId));
   }
 
   @Override

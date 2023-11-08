@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface GetProductSizeService {
 
-  List<ProductSize> findAllProductSizesBySize(Long sizeId);
+  List<ProductSize> findAllProductSizesBySize(Long sizeId, Long storeId);
 
   List<ProductSize> findAllProductSizesByProduct(Long productId);
 }

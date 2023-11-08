@@ -8,8 +8,10 @@ import com.sellfinity.core.domain.service.product.GetProductService;
 import com.sellfinity.core.infrastructure.adapter.product_category.GetProductCategoryAdapter;
 import com.sellfinity.core.infrastructure.adapter.product_color.GetProductColorAdapter;
 import com.sellfinity.core.infrastructure.adapter.product_size.GetProductSizeAdapter;
+import com.sellfinity.core.infrastructure.api.product.FindProductRequest;
 import com.sellfinity.core.infrastructure.repository.product.ProductRepository;
 import com.sellfinity.core.infrastructure.repository.product.ProductRepositoryMapper;
+import com.sellfinity.core.infrastructure.repository.product.custom.ProductCustomRepository;
 import com.sellfinity.core.shared.exception.notfound.product.ProductNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 public class GetProductAdapter implements GetProductService {
 
   private final ProductRepository productRepository;
+  private final ProductCustomRepository productCustomRepo;
   private final ProductRepositoryMapper productRepositoryMapper;
   private final GetProductSizeAdapter getProductSizeAdapter;
   private final GetProductColorAdapter getProductColorAdapter;
@@ -43,22 +46,23 @@ public class GetProductAdapter implements GetProductService {
   }
 
   @Override
-  public List<Product> findAllProductsBySize(Long sizeId) {
-    List<ProductSize> productSizeList = getProductSizeAdapter.findAllProductSizesBySize(sizeId);
+  public List<Product> findAllProductsBySize(Long sizeId, Long storeId) {
+    List<ProductSize> productSizeList = getProductSizeAdapter.findAllProductSizesBySize(sizeId,
+        storeId);
     return productSizeList.stream().map(ProductSize::getProduct).collect(Collectors.toList());
   }
 
   @Override
-  public List<Product> findAllProductsByColor(Long colorId) {
+  public List<Product> findAllProductsByColor(Long colorId, Long storeId) {
     List<ProductColor> productColorList = getProductColorAdapter.findAllProductColorByColor(
-        colorId);
+        colorId, storeId);
     return productColorList.stream().map(ProductColor::getProduct).collect(Collectors.toList());
   }
 
   @Override
-  public List<Product> findAllProductsByCategory(Long categoryId) {
+  public List<Product> findAllProductsByCategory(Long categoryId, Long storeId) {
     List<ProductCategory> productCategoryList = getProductCategoryAdapter.findAllProductCategoryByCategory(
-        categoryId);
+        categoryId, storeId);
     return productCategoryList.stream().map(ProductCategory::getProduct)
         .collect(Collectors.toList());
   }
@@ -71,5 +75,10 @@ public class GetProductAdapter implements GetProductService {
   @Override
   public Long getProductCount(Long storeId) {
     return productRepository.count();
+  }
+
+  @Override
+  public List<Product> findAllProductsCriteria(FindProductRequest req) {
+    return productRepositoryMapper.toEntity(productCustomRepo.findAllProductsCriteria(req));
   }
 }
