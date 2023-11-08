@@ -11,14 +11,14 @@ public class DeleteCategoryValidator {
   private final GetCategoryApplication getCategoryApplication;
   private final GetProductApplication getProductApplication;
 
-  public void validateCategory(Long categoryId) {
+  public void validateCategory(Long categoryId, Long storeId) {
     getCategoryApplication.findCategoryById(categoryId);
-    if (isRelatedToProducts(categoryId)) {
+    if (isRelatedToProducts(categoryId, storeId)) {
       throw new CategoryBelongsToProductException(String.valueOf(categoryId));
     }
   }
 
-  private boolean isRelatedToProducts(Long categoryId) {
-    return getProductApplication.findAllProductsByCategory(categoryId).size() > 0;
+  private boolean isRelatedToProducts(Long categoryId, Long storeId) {
+    return !getProductApplication.findAllProductsByCategory(categoryId, storeId).isEmpty();
   }
 }

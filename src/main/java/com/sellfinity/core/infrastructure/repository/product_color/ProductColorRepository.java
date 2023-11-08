@@ -11,9 +11,9 @@ public interface ProductColorRepository extends JpaRepository<ProductColorDto, L
   @Query("DELETE FROM ProductColorDto pc WHERE pc.product.id = :productId AND pc.store.id = :storeId")
   void deleteByProductIdAndStoreId(Long productId, Long storeId);
 
-  List<ProductColorDto> findAllByColor_Id(Long colorId);
-
   List<ProductColorDto> findAllByProduct_Id(Long id);
 
   void deleteAllByProduct_Id(Long id);
+
+  List<ProductColorDto> findAllByColor_IdAndStore_Id(Long colorId, Long storeId);
 }

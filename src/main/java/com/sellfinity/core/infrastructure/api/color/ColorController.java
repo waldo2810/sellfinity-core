@@ -54,8 +54,8 @@ public class ColorController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public void deleteColor(@PathVariable("id") Long id) {
-    deleteColorApplication.deleteColor(id);
+  public void deleteColor(@PathVariable("id") Long id, @RequestParam("storeId") Long storeId) {
+    deleteColorApplication.deleteColor(id, storeId);
   }
 
   @PutMapping("/update/{id}")

@@ -54,8 +54,8 @@ public class SizeController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public void deleteColor(@PathVariable("id") Long id) {
-    deleteSizeApplication.deleteSize(id);
+  public void deleteColor(@PathVariable("id") Long id, @RequestParam("storeId") Long storeId) {
+    deleteSizeApplication.deleteSize(id, storeId);
   }
 
   @PutMapping("/update/{id}")

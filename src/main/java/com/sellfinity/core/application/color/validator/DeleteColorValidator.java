@@ -11,14 +11,14 @@ public class DeleteColorValidator {
   private final GetColorApplication getColorApplication;
   private final GetProductApplication getProductApplication;
 
-  public void validateColor(Long colorId) {
+  public void validateColor(Long colorId, Long storeId) {
     getColorApplication.findColorById(colorId);
-    if (isRelatedToProducts(colorId)) {
+    if (isRelatedToProducts(colorId, storeId)) {
       throw new ColorBelongsToProductException(String.valueOf(colorId));
     }
   }
 
-  private boolean isRelatedToProducts(Long colorId) {
-    return getProductApplication.findAllProductsByColor(colorId).size() > 0;
+  private boolean isRelatedToProducts(Long colorId, Long storeId) {
+    return !getProductApplication.findAllProductsByColor(colorId, storeId).isEmpty();
   }
 }

@@ -5,7 +5,6 @@ import com.sellfinity.core.application.product.GetProductApplication;
 import com.sellfinity.core.application.product.SaveProductApplication;
 import com.sellfinity.core.application.product.UpdateProductApplication;
 import com.sellfinity.core.infrastructure.api.image.ImageRequestMapper;
-import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -47,12 +46,9 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductDataResponse>> findAllProducts(
-      @Nullable @RequestParam("storeId") Long storeId,
-      @Nullable @RequestParam("isFeatured") String isFeatured) {
+  public ResponseEntity<List<ProductDataResponse>> findAllProducts(FindProductRequest query) {
     return ResponseEntity.ok(
-        productDataResponseMapper.toDto(
-            getProductApplication.findAllProducts(storeId, isFeatured)));
+        productDataResponseMapper.toDto(getProductApplication.findAllProductsCriteria(query)));
   }
 
   @GetMapping("/search/{id}")

@@ -33,7 +33,8 @@ public class CategoryController {
   private final CategoryRequestMapper categoryRequestMapper;
 
   @GetMapping
-  public ResponseEntity<List<CategoryResponse>> findAllCategories(@Nullable @RequestParam("storeId") Long storeId) {
+  public ResponseEntity<List<CategoryResponse>> findAllCategories(
+      @Nullable @RequestParam("storeId") Long storeId) {
     return ResponseEntity.ok(
         categoryResponseMapper.toDto(getCategoryApplication.findAllCategories(storeId)));
   }
@@ -53,8 +54,8 @@ public class CategoryController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public void deleteCategory(@PathVariable("id") Long id) {
-    deleteCategoryApplication.deleteCategory(id);
+  public void deleteCategory(@PathVariable("id") Long id, @RequestParam("storeId") Long storeId) {
+    deleteCategoryApplication.deleteCategory(id, storeId);
   }
 
   @PutMapping("/update/{id}")
