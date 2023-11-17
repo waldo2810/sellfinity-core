@@ -10,4 +10,6 @@ public interface GetBillBoardService {
   Billboard findBillBoardById(Long id);
 
   List<Billboard> findAllBillboardsByStoreId(Long storeId);
+
+  List<Billboard> findAllBillboardsByCategoryId(Long categoryId);
 }

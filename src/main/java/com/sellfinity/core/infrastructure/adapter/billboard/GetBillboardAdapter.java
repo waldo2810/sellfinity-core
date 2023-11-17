@@ -31,4 +31,9 @@ public class GetBillboardAdapter implements GetBillBoardService {
   public List<Billboard> findAllBillboardsByStoreId(Long storeId) {
     return billboardRepositoryMapper.toEntity(billboardRepository.findByStore_Id(storeId));
   }
+
+  @Override
+  public List<Billboard> findAllBillboardsByCategoryId(Long categoryId) {
+    return billboardRepositoryMapper.toEntity(billboardRepository.findByCategory_Id(categoryId));
+  }
 }

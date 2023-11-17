@@ -21,8 +21,10 @@ public class BillBoardApplicationBeans {
 
   @Bean
   public GetBillboardApplication getBillboardApplication(
-      GetBillBoardService getBillBoardService, GetStoreApplication getStoreApplication) {
-    return new GetBillboardApplication(getBillBoardService, getStoreApplication);
+      GetBillBoardService getBillBoardService, GetStoreApplication getStoreApplication,
+      GetCategoryApplication getCategoryApplication) {
+    return new GetBillboardApplication(getBillBoardService, getStoreApplication,
+        getCategoryApplication);
   }
 
   @Bean
