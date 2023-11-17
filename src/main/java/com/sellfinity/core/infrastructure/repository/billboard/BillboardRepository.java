@@ -17,4 +17,6 @@ public interface BillboardRepository extends JpaRepository<BillboardDto, Long> {
       LocalDateTime updateAt);
 
   List<BillboardDto> findByStore_Id(Long storeId);
+
+  List<BillboardDto> findByCategory_Id(Long categoryId);
 }

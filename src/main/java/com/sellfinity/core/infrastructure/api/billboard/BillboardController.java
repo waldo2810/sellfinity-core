@@ -41,9 +41,11 @@ public class BillboardController {
 
   @GetMapping
   public ResponseEntity<List<BillBoardResponse>> findAllBillboards(
-      @Nullable @RequestParam("storeId") Long storeId) {
+      @Nullable @RequestParam("storeId") Long storeId,
+      @Nullable @RequestParam("categoryId") Long categoryId) {
     return ResponseEntity.ok(
-        billBoardResponseMapper.toDto(getBillboardApplication.findAllBillboards(storeId)));
+        billBoardResponseMapper.toDto(
+            getBillboardApplication.findAllBillboards(storeId, categoryId)));
   }
 
   @GetMapping("/{id}")
